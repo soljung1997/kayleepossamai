@@ -1,3 +1,42 @@
+
+//for determining the width and height of an image to prevent layout shifts
+
+// script.js
+window.addEventListener('load', function() {
+    const img = document.getElementsByClassName('photo')[0];
+    const container = img.parentElement;
+
+    // Check if the image is already loaded
+    if (img.complete) {
+        setDimensions(img, container);
+    } else {
+        img.onload = function() {
+            setDimensions(img, container);
+        };
+    }
+});
+
+function setDimensions(img, container) {
+    const naturalWidth = img.naturalWidth;
+    const naturalHeight = img.naturalHeight;
+
+    // Calculate the aspect ratio
+    const aspectRatio = naturalWidth / naturalHeight;
+
+    // Get container dimensions
+    const containerWidth = container.clientWidth;
+
+    // Set image dimensions to fit within the container, maintaining aspect ratio
+    const imgWidth = Math.min(naturalWidth, containerWidth);
+    const imgHeight = imgWidth / aspectRatio;
+
+    img.width = imgWidth;
+    img.height = imgHeight;
+    img.style.width = imgWidth + 'px';
+    img.style.height = imgHeight + 'px';
+}
+
+
 window.addEventListener('scroll', function() {
     const sections = document.querySelectorAll('.section');
     const navbar = document.getElementById('navbar');

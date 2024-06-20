@@ -111,11 +111,43 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#album-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+/*#region all image containers*/
+
+.responsive-image {
+    width: 50vw; /* 50% of the viewport width */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Ensure the image does not exceed the container's width */
+    display: block; /* Remove any inline spacing */
 }
+
+.album-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically if needed */
+    width: 100vw;
+    height: auto;
+}
+
+.photo-container {
+    width: 50vw;
+    height: auto; /* Optional: makes the container take full viewport height */
+}
+
+.photo {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+}
+
+#sticky-image {
+    max-width: 100%;
+    height: auto;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 10px; /* Adjust this value to your preference */
+}
+
+/*#endregion*/
 
 .footer {
     width: 100%;
@@ -506,14 +538,6 @@ body.dark-mode {
 
 .sticky-image-container {
     position: sticky;
-}
-
-#sticky-image {
-    max-width: 100%;
-    height: auto;
-    position: -webkit-sticky; /* For Safari */
-    position: sticky;
-    top: 10px; /* Adjust this value to your preference */
 }
 
 /*#endregion*/
