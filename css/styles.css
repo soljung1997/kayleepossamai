@@ -1,0 +1,842 @@
+/* #region main styles, such as body, header, etc*/
+
+
+/*#region Font faces*/
+@font-face {
+    font-family: 'buttacup';
+    src: url('../fonts/sf-buttacup.lettering.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'buttacup';
+    src: url('../fonts/sf-buttacup.lettering-oblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'aaargh';
+    src: url('../fonts/Aaargh.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'primer';
+    src: url('../fonts/Primer Print.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'primer';
+    src: url('../fonts/Primer Print Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'modernsans';
+    src: url('../fonts/ModernSans-Light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'advent';
+    src: url('../fonts/AdventPro-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'advent';
+    src: url('../fonts/AdventPro-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'advent';
+    src: url('../fonts/AdventPro-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'advent';
+    src: url('../fonts/AdventPro-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*#endregion*/
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: "modernsans";
+    font-weight: 100;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.section {
+    flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+header {
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#album-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    width: 100%;
+    height: 20vh;
+    position: relative;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.footer .nav-link{
+    font-family: 'primer', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    transition: color 0.3s;
+    padding: 10 10px; /* Add uniform spacing */
+    justify-content: end;
+}
+
+.footer .nav-link:hover {
+    color: #8a8a8a; /* Light background color on hover */
+}
+
+.content {
+    position: relative;
+    z-index: 5;
+}
+
+div .container-fluid {
+    padding-top: 0px; /* This padding pushes the container below the fixed navbar */
+    max-width: 500px;
+}
+
+.styled-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.content-form {
+    position: relative;
+    z-index: 5;
+    background: white; /* Adjust colors as needed */
+    align-items: center;
+    justify-content: center;
+    margin-top: 20vh;
+    max-width: 50vh;
+    margin: 5vh;
+}
+
+.form-container {
+    max-width: 50vh;
+    background-color: white;
+    margin-bottom: 20vh;
+}
+
+.form-group {
+    max-width: 50vh;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    gap: 1vh;
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow both horizontal and vertical resizing */
+}
+
+.form-group.full {
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'primer', sans-serif;
+    font-weight: 300;
+    
+}
+
+.form-group input[type="submit"] {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #747474;
+}
+
+.title {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.title:hover {
+    color: #8a8a8a;
+}
+
+.headline {
+    margin: auto;
+    margin-top: 34%;
+    text-align: left;
+    margin-left: 5%;
+}
+
+.display-1 {
+    font-size: 40;
+    font-family: 'advent';
+    font-weight: 200;
+    padding-left: 0;
+    color: rgb(0, 0, 0);
+}
+
+.display-2 {
+    font-size: 20;
+    font-family: 'advent';
+    font-weight: 300;
+    color: rgb(255, 255, 255);
+}
+
+.display-3 {
+    font-size: 40;
+    font-family: 'primer';
+    font-weight: 200;
+    color: rgb(0, 0, 0);
+}
+
+.section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+.offcanvas {
+    height: inherit;
+    background-color: inherit; /* Slightly transparent background for the offcanvas */
+    justify-content: end;
+}
+
+.offcanvas-body {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 1%;
+}
+
+.offcanvas-body h1 {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+#background {
+    width: 100%;
+    background: inherit;
+}
+
+/*#endregion*/
+
+/* #region For the light/dark mode toggle*/
+
+/* Light mode styles */
+body.light-mode {
+    background-color: var(--light-bg);
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: var(--dark-bg);
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+.toggle-button {
+    padding: 0.5rem;
+    background-color: #007bff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 3rem;
+    right: 0;
+}
+
+.bd-mode-toggle {
+    position: fixed; /* Fixes the position */
+    bottom: 1rem; /* Adjust as necessary */
+    right: 1rem; /* Adjust as necessary */
+    z-index: 1500; /* High z-index to ensure it appears above other elements */
+}
+
+/* Remove default list styling */
+.dropdown-menu,
+.dropdown-menu ul {
+    list-style: none; /* Remove bullets */
+    padding: 0.5rem 0rem; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem; /* Adjust padding for overall spacing */
+    cursor: pointer; /* Pointer cursor to indicate they are clickable */
+    border: none; /* Remove default button border */
+    background: none; /* Remove default button background */
+    text-align: left; /* Left-align the text */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    width: 100%; /* Make them full width */
+    text-decoration: none; /* Remove any default text decoration */
+    color: inherit; /* Inherit text color from parent */
+    font-size: 1rem; /* Set font size */
+    outline: none; /* Remove default focus outline */
+}
+
+.dropdown-item svg.bi {
+    margin-right: 0.5rem; /* Space between icon and text */
+    margin-left: 0; /* Remove any left margin */
+}
+
+/* Add hover effect */
+.dropdown-item:hover {
+    background-color: #8a8a8a; /* Light background color on hover */
+}
+
+/* Optional: Add active state */
+.dropdown-item:active {
+    background-color: #000000; /* Slightly darker background color on active */
+}
+
+/* Optional: Add focus state */
+.dropdown-item:focus {
+    outline: none; /* Remove default focus outline */
+    background-color: #e9ecef; /* Slightly darker background color on focus */
+}
+
+.dropdown-hide {
+    display: none !important;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.dropdown-menu.show {
+    display: block !important;
+}
+
+.show {
+    display: flex;
+}
+
+.theme-icon {
+    margin-right: 0.5rem;
+}
+
+/* Ensures the dropdown container is fixed in the bottom right corner */
+.bd-mode-toggle {
+    position: fixed; /* Fixes the position */
+    bottom: 1rem; /* Adjust as necessary */
+    right: 1rem; /* Adjust as necessary */
+    z-index: 1500; /* High z-index to ensure it appears above other elements */
+}
+
+/* Styles for the button */
+.bd-mode-toggle .btn-bd-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure dropdown menu appears above content */
+.bd-mode-toggle .dropdown-menu {
+    z-index: 1500; /* Match the z-index to ensure it appears above other elements */
+}
+
+/* Optional: Add some styles for the hover effect */
+.bd-mode-toggle .btn-bd-primary:hover {
+    background-color: #6528e0; /* Hover background color */
+}
+
+/* Optional: Add some styles for active state */
+.bd-mode-toggle .dropdown-menu .active .bi {
+    display: block !important;
+}
+
+
+/*#endregion*/
+
+/* #region Making sure the background covers the screen*/
+
+.background-cover {
+    background-size: cover; /* Ensure the image covers the entire div */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100vh; /* Full viewport height */
+    width: 100vw ;
+    margin-top: -10vh;
+    display: flex;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+}
+
+/*#endregion*/
+
+/* #region Makes sure that the navbar is transparent*/
+
+.container {
+    padding-left: 0; /* Remove default padding */
+    padding-right: 0; /* Remove default padding */
+    width: 100%;
+    height: flex;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    height: flex;
+    width: 80vw;
+    align-items: top;
+    justify-content: center;
+    gap: 5vw;
+}
+
+.flex-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: 'primer';
+    font-size: 22px;
+    flex: 1;
+    margin-bottom: 20vh;
+}
+
+.flex-item img {
+    position: fixed;
+    max-width: 40vw;
+    height: auto;
+    top: 12vh;
+}
+
+.sticky-image-container {
+    position: sticky;
+}
+
+#sticky-image {
+    max-width: 100%;
+    height: auto;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 10px; /* Adjust this value to your preference */
+}
+
+/*#endregion*/
+
+/* #region Sets the placeholder image in case image doesn't load */
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    }
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+}
+
+.b-example-divider {
+    width: 100%;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+}
+
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+
+/* #endregion End for image loading */
+
+/* #region For nav-scroller, if navbar is a scrollable navbar*/
+
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+/*#endregion*/
+
+/* #region navbar custonization */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 10vh;
+    z-index: 1000;
+    background: #ffffff;
+    color: #000;
+    border: none;
+    box-shadow: none;
+    justify-content: end;
+    align-items: center;
+}
+
+.navbar .nav-items a {
+    color: black !important; /* Ensure specificity */
+    text-decoration: none;
+    padding: 14px 20px;
+    display: inline-block;
+}
+
+.nav-items a {
+    color: black;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: inline-block;
+}
+.nav-icon a {
+    text-decoration: none;
+    padding: 14px 20px;
+    display: inline-block;
+}
+
+.dropdown {
+    display: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #575757;
+}
+
+.show {
+    display: block; /* Show dropdown */
+}
+
+@media screen and (max-width: 600px) {
+    .nav-items {
+        display: none; /* Hide the nav items */
+    }
+    .dropdown {
+        display: block; /* Show the dropdown button */
+    }
+}
+
+.container {
+    width: 82vw;
+    height: inherit;
+    padding-left: 0; /* Remove default padding */
+    padding-right: 0; /* Remove default padding */
+    justify-content: end;
+}
+
+.navbar .container {
+    padding-left: 0; /* Remove default padding */
+    padding-right: 0; /* Remove default padding */
+    background: inherit; /* Ensure container is also transparent */
+    align-items: center;
+    justify-content: end;
+}
+
+.nav-link{
+    text-decoration: none;
+}
+
+.navbar .nav-link {
+    text-decoration: none;
+    font-family: 'primer', sans-serif;
+    font-size: 20px;
+    color: #000000;
+    transition: color 0.3s;
+    padding: 10 10px; /* Add uniform spacing */
+    justify-content: end;
+}
+
+.navbar .nav-link:hover {
+    color:#8a8a8a;
+}
+
+.icon-link {
+    padding-top: 10px;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.footer .icon-link:hover {
+    color: #8a8a8a !important;
+}
+
+.navbar .icon-link:hover {
+    color: #8a8a8a !important; /* Change color on hover */
+}
+
+.icon-link:hover {
+    color: #8a8a8a;
+}
+
+.navbar .icon-link {
+    color: #000000;
+    font-size: 1.5rem;
+    margin-left: 1vw; /* Add spacing between icons */
+}
+
+.navbar-nav {
+    padding-top: 1%;
+    margin-right: 1%; /* Add right margin */
+    align-items: center;
+    justify-content: end;
+}
+
+.navbar .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .fa-instagram,
+.navbar .fa-tiktok {
+    font-size: 0.7em; /* Adjust the size of the icons using em units */
+}
+
+/*Makes sure the navbar list buttons are invisible, and customized*/
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    padding-right: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/*#endregion*/
+
+/* #region Icon links if styled separately */
+
+
+/*#endregion*/
+
+
+/* #region Icon Customization */
+
+.icon-container{
+    align-items: center;
+    display: flex;
+    gap: 20vw;
+    
+}
+
+.icon-link {
+    font-size: 1rem; /* Adjust icon size as needed */
+    color: #ffffff; /* Icon color */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.footer .icon-link {
+    font-size: 1rem; /* Adjust icon size as needed */
+    color: #ffffff; /* Icon color */
+    text-decoration: none; /* Remove underline from links */
+    margin: 0 1vw;
+}
+
+/*#endregion*/
+
+
+/* #region Sticky images */
+
+#parent-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    gap: 0; /* No gaps between columns */
+}
+
+.album-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    padding: 0.3vw;
+    padding-top: 0px;
+}
+
+.sticky-container {
+    position: relative;
+    width: 100%;
+    background-color: white; /* Optional: for better visibility */
+    overflow: hidden;
+    margin-bottom: 0;
+    padding: 0;
+}
+.sticky-image {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.sticky-container.minimized .sticky-image {
+    width: 50px; /* Adjust the minimized size as needed */
+    max-width: none; /* Override max-width */
+}
+
+/*#endregion*/
+
+
+/* #region */
+/*#endregion*/
+
+
+/* #region */
+/*#endregion*/
+
+
+/* #region */
+/*#endregion*/
+
+
+/* #region */
+/*#endregion*/
+
+
+/* #region */
+/*#endregion*/
+
