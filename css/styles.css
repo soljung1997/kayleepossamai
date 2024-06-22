@@ -20,12 +20,11 @@ body, html {
 /*#region Containers*/
 
 .main-container {
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     width: 100vw;
-    height: auto;
+    height: 100%;
     padding: 0;
     margin: 0;
 }
@@ -256,6 +255,7 @@ body, html {
     font-weight: 200;
     padding-left: 0;
     color: rgb(0, 0, 0);
+    background-color: #ffffff;
 }
 
 .display-2 {
@@ -277,11 +277,9 @@ body, html {
 /*#region Navbar*/
 
 .navbar {
-    position: fixed;
     top: 0;
     width: 100vw;
     height: 10vh;
-    z-index: 1000;
     background: #ffffff;
     color: #000;
     border: none;
