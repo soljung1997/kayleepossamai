@@ -3,4 +3,7 @@
 
 // script.js
 
-
+document.addEventListener("DOMContentLoaded", function() {
+    // Remove the padding
+    document.body.style.paddingTop = '';
+});
