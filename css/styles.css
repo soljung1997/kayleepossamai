@@ -1,5 +1,11 @@
 /*#region Body, Header, etc*/
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -18,14 +24,16 @@ body, html {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 100vw;
     height: auto;
+    padding: 0;
+    margin: 0;
 }
 
 .container {
     padding: 0;
     width: 82vw;
-    height: auto;
+    height: 10vh;
     margin: 0 auto;
     justify-content: end;
     background-color: rgba(0, 0, 0, 0.5);
@@ -323,7 +331,7 @@ body, html {
 }
 
 .navbar .fa-instagram, .navbar .fa-tiktok {
-    font-size: 0.7em;
+    font-size: 0.9vw;
 }
 
 nav ul {
