@@ -36,25 +36,6 @@ function setDimensions(img, container) {
     img.style.height = imgHeight + 'px';
 }
 
-
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('.section');
-    const navbar = document.getElementById('navbar');
-    const navLinks = navbar.querySelectorAll('.nav-link');
-
-    sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-            const sectionBgColor = window.getComputedStyle(section).backgroundColor;
-            const textColor = getContrastingColor(sectionBgColor);
-
-            navLinks.forEach(link => {
-                link.style.color = textColor;
-            });
-        }
-    });
-});
-
 function getContrastingColor(rgb) {
     const rgbValues = rgb.match(/\d+/g);
     const r = parseInt(rgbValues[0]);
@@ -75,82 +56,6 @@ function adjustBodyPadding() {
 }
 
 //for loading light, dark mode.
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleButton = document.getElementById('bd-theme');
-    const dropdownMenu = document.getElementById('dropdown-menu');
-    const themeItems = document.querySelectorAll('.dropdown-item');
-  
-    toggleButton.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('show');
-    });
-  
-    themeItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const theme = item.getAttribute('data-theme');
-
-        
-        applyTheme(theme);
-
-        themeItems.forEach(i => {
-          const checkIcon = i.querySelector('.check-icon');
-          if (checkIcon) {
-              checkIcon.classList.add('d-none');
-          }
-        });
-
-      // Show the check sign for the clicked item
-        const checkIcon = item.querySelector('.check-icon');
-        if (checkIcon) {
-            checkIcon.classList.remove('d-none');
-        }
-          dropdownMenu.classList.remove('show');
-      });
-    });
-
-    function setInitialTheme() {
-      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      let currentTheme = 'light';
-
-      if (document.body.classList.contains('dark-mode')) {
-          currentTheme = 'dark';
-      } else if (prefersDarkScheme) {
-          currentTheme = 'dark';
-      }
-
-      applyTheme(currentTheme);
-
-      // Show the correct check sign
-      themeItems.forEach(item => {
-          const theme = item.getAttribute('data-bs-theme-value');
-          const checkIcon = item.querySelector('.check-icon');
-          if (checkIcon) {
-              if (theme === currentTheme) {
-                  checkIcon.classList.remove('dropdown-hide');
-              } else {
-                  checkIcon.classList.add('dropdown-hide');
-              }
-          }
-      });
-  }
-  
-    function applyTheme(theme) {
-      document.body.classList.remove('light-mode', 'dark-mode');
-      if (theme === 'light') {
-        document.body.classList.add('light-mode');
-        document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--light-bg');
-    } else if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-        document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--dark-bg');
-    } else if (theme === 'auto') {
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.body.classList.add(prefersDarkScheme ? 'dark-mode' : 'light-mode');
-        const bgColor = prefersDarkScheme ? getComputedStyle(document.documentElement).getPropertyValue('--dark-bg') : getComputedStyle(document.documentElement).getPropertyValue('--light-bg');
-        document.body.style.backgroundColor = bgColor;
-    }
-    }
-  });
   
 
   document.addEventListener('DOMContentLoaded', function() {
