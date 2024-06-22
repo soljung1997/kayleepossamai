@@ -8,9 +8,167 @@
     <!--This product includes Bootstrap, licensed under the MIT License (MIT)-->
     <title>Kaylee Possamai</title>
 
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!--Fonts-->
-    
+    <style>
+      /* #region Critical CSS */
+
+      main {
+        display: flex;
+        unicode-bidi: isolate;
+      }
+
+      body, html {
+          display: flex;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          width: 100%;
+          font-family: "modernsans";
+          font-weight: 100;
+      }
+
+      .main-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: column;
+          width: 100vw;
+          padding: 0;
+          margin: 0;
+      }
+
+      /*#endregion*/
+
+      /*#region Navbar*/
+
+      .navbar {
+          top: 0;
+          width: 100vw;
+          height: 10vh;
+          background: #ffffff;
+          color: #000;
+          border: none;
+          box-shadow: none;
+          justify-content: end;
+          align-items: center;
+      }
+
+      .nav-items a, .nav-icon a, nav ul li a {
+          color: black;
+          text-decoration: none;
+          padding: 14px 20px;
+          display: inline-block;
+          transition: color 0.3s;
+      }
+
+      .nav-items a:hover, .nav-icon a:hover, nav ul li a:hover {
+          color: #8a8a8a !important;
+      }
+
+      .navbar .nav-link {
+          font-family: 'primer', sans-serif;
+          font-size: 20px;
+          color: #000000;
+          padding: 10px;
+          justify-content: end;
+      }
+
+      .icon-link {
+          padding-top: 10px;
+          color: #000000;
+          font-size: 12;
+          margin-left: 1vw;
+          transition: color 0.3s ease;
+      }
+
+      .navbar-nav {
+          padding-top: 1%;
+          margin-right: 1%;
+          align-items: center;
+          justify-content: end;
+      }
+
+      .navbar .nav-item {
+          display: flex;
+          align-items: center;
+      }
+
+      .navbar .fa-instagram, .navbar .fa-tiktok {
+          font-size: 14;
+      }
+
+      nav ul {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          justify-content: flex-end;
+          gap: 20px;
+          padding-right: 20px;
+      }
+
+      nav ul li {
+          display: inline;
+      }
+
+      /*#endregion*/
+
+      /*#region Photo Containers*/
+
+      .album-container {
+          display: flex;
+          justify-content: center; /* Center horizontally */
+          align-items: center; /* Center vertically if needed */
+          width: 80vw;
+          height: auto;
+      }
+
+      .photo-container {
+          width: 100%;
+          height: auto; /* Optional: makes the container take full viewport height */
+      }
+      
+      .photo {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+
+      /*#endregion*/
+
+      /*#region Footer*/
+
+      .footer {
+          width: 100%;
+          height: 20vh;
+          position: relative;
+          background-color: #000000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          gap: 2vh;
+          flex-shrink: 0;
+      }
+
+      .footer .nav-link{
+          font-family: 'primer', sans-serif;
+          font-size: 20px;
+          color: #ffffff;
+          transition: color 0.3s;
+          padding: 10 10px; /* Add uniform spacing */
+          justify-content: end;
+      }
+
+      .footer .nav-link:hover {
+          color: #8a8a8a; /* Light background color on hover */
+      }
+
+      /*#endregion*/
+
+      /* Add other critical styles here */
+    </style>
+
+    <link rel="stylesheet" href="css/styles.css">    
         <!-- Favicons -->
         <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
@@ -60,7 +218,7 @@
           
           <div class="album-container">
               <div class="photo-container">
-                <img src="images/modeling/cover/cover-1024.jpg" class="photo">
+                <img src="images/modeling/cover/cover-1600.jpg" class="photo" width="1600" height="900">
               </div>
           </div>
             <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
