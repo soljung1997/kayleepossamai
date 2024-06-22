@@ -218,7 +218,18 @@
           
           <div class="album-container">
               <div class="photo-container">
-                <img src="images/modeling/cover/cover-1600.jpg" class="photo" width="1600" height="900">
+                <img
+                src="images/modeling/cover/cover-1600.jpg"
+                srcset="images/modeling/cover/cover-320.jpg 320w,
+                        images/modeling/cover/cover-480.jpg 480w,
+                        images/modeling/cover/cover-768.jpg 768w,
+                        images/modeling/cover/cover-1600.jpg 1600w"
+                sizes="(max-width: 600px) 480px, (max-width: 1200px) 768px, 1600px"
+                class="photo"
+                width="1600"
+                height="900"
+                loading="eager"
+                alt="Description of the image">
               </div>
           </div>
             <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
