@@ -32,6 +32,10 @@
     color: black;
 }
 
+.content-container {
+    display: flex;
+}
+
 .album-container {
     display: flex;
     justify-content: center; /* Center horizontally */
@@ -74,6 +78,21 @@
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'advent';
+    src: url('../fonts/AdventPro-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'advent';
+    src: url('../fonts/AdventPro-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
 /*#endregion*/
 
 /*#region Image Containers*/
@@ -110,12 +129,13 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 2vh;
+    gap: 1vh;
     flex-shrink: 0;
 }
 
 .footer .nav-link{
     font-family: 'primer', sans-serif;
+    text-decoration: none;
     font-size: 20px;
     color: #ffffff;
     transition: color 0.3s;
@@ -198,6 +218,7 @@
 /*#region Font Classes*/
 
 .title {
+    font-size: 40px;
     text-decoration: none;
     color: inherit;
     transition: color 0.3s ease;
@@ -208,7 +229,6 @@
 }
 
 .display-1 {
-    font-size: 40;
     font-family: 'advent', sans-serif;
     font-weight: 200;
     padding-left: 0;
@@ -217,7 +237,7 @@
 }
 
 .display-2 {
-    font-size: 20;
+    font-size: 20px;
     font-family: 'advent', sans-serif;
     font-weight: 300;
     color: rgb(255, 255, 255);
@@ -226,7 +246,7 @@
 .display-3 {
     width: auto;
     height: 10vh;
-    font-size: 40;
+    font-size: 40px;
     font-family: 'primer', sans-serif;
     font-weight: 200;
     color: rgb(0, 0, 0);
@@ -277,7 +297,8 @@
 .icon-link {
     padding-top: 10px;
     color: #000000;
-    font-size: 12;
+    width: 18px;
+    height: 18px;
     margin-left: 1vw;
     transition: color 0.3s ease;
 }
@@ -296,7 +317,8 @@
 }
 
 .navbar .fa-instagram, .navbar .fa-tiktok {
-    font-size: 14;
+    width: 18px;
+    height: 18px;
 }
 
 nav ul {
@@ -431,14 +453,13 @@ body.dark-mode {
 .icon-container{
     align-items: center;
     display: flex;
-    gap: 20vw;
+    gap: 0;
     
 }
 
-
-
-.footer .icon-link {
-    font-size: 14; /* Adjust icon size as needed */
+.footer-link.icon-link {
+    width: 14px;
+    height: 14px;
     color: #ffffff; /* Icon color */
     text-decoration: none; /* Remove underline from links */
     margin: 0 1vw;
