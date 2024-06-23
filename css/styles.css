@@ -74,39 +74,6 @@
     font-style: normal;
     font-display: swap;
 }
-
-@font-face {
-    font-family: 'advent';
-    src: url('../fonts/AdventPro-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'advent';
-    src: url('../fonts/AdventPro-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'advent';
-    src: url('../fonts/AdventPro-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'advent';
-    src: url('../fonts/AdventPro-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
 /*#endregion*/
 
 /*#region Image Containers*/

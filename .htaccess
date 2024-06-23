@@ -44,6 +44,3 @@
   BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
   Header append Vary User-Agent
 </IfModule>
-
-# Test directive to ensure .htaccess is being read
-deny from all
