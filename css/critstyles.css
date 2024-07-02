@@ -1,6 +1,6 @@
 /* #region Critical CSS */
 
-    /** { border: 1px solid red !important; }*/
+    * { border: 1px solid red !important; }
 
     main {
     width: 100%;
@@ -164,30 +164,44 @@
     -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%); /* For Safari */
     }
 
-    .photo-container-1 {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    width: 100vw;
-    height: auto;
+    .photo-container-1, .photo-container-2 {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1vh;
+        justify-content: flex-end;
+        width: 50vw;
+        height: auto;
     }
 
-    .photo-1 {
+    .album {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
+        height: auto;
+    }
+
+    .photo-individual {
     position: relative;
     text-align: center;
-    width: 100%;
-    height: 80vh;
-    margin-left: 40vw;
+    width: 50vw;
     display: flex;
     flex-direction: column;
+    gap: 2vh;
     align-items: center;
-    z-index: 1;
+    }
+
+    .photo-individual img {
+        width: 100%;
+        height: auto;
+        object-fit: cover; /* Ensures image covers the entire container */
     }
 
     .scroll-image {
-    position: absolute;
+    position: relative;
     bottom: 0;
-    width: 100vw;
+    width: 50vw;
     height: auto; /* Ensure image scales correctly */
     pointer-events: none;
     z-index: 1;

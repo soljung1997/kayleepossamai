@@ -1,308 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="preload" href="images/modeling/cover/cover-1600.jpg" as="image">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Solomon Jung">
-  <title>Kaylee Possamai</title>
-
-  <style>
-    /* #region Critical CSS */
-
-    main {
-      height: auto;
-      unicode-bidi: isolate;
-    }
-
-    body, html {
-      background-color: #000;
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
-      width: 100%;
-      font-family: "modernsans";
-      font-weight: 100;
-    }
-
-    .main-container {
-      display: flex;
-    justify-content: space-between;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Collage</title>
+    <style>
+    body {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    width: 100vw;
-    padding: 0;
+    height: 100vh;
     margin: 0;
-    }
+    background-color: #f0f0f0;
+}
 
-    /*#endregion*/
+.photo-collage {
+    display: grid;
+    grid-template-areas:
+        "photo1 photo1 photo2"
+        "photo3 photo4 photo4";
+    gap: 10px;
+}
 
-    /*#region Navbar*/
+.photo {
+    background-size: cover;
+    background-position: center;
+}
 
-    .navbar {
-      top: 0;
-      width: 100vw;
-      height: 10vh;
-      background: #ffffff;
-      color: #000;
-      border: none;
-      box-shadow: none;
-      justify-content: end;
-      align-items: center;
-    }
+.photo-1 {
+    grid-area: photo1;
+    height: 300px;
+    background-image: url('https://via.placeholder.com/600x300');
+}
 
-    .nav-items a, .nav-icon a, nav ul li a {
-      color: black;
-      text-decoration: none;
-      padding: 14px 20px;
-      display: inline-block;
-      transition: color 0.3s;
-    }
+.photo-2 {
+    grid-area: photo2;
+    height: 150px;
+    background-image: url('https://via.placeholder.com/300x150');
+}
 
-    .nav-items a:hover, .nav-icon a:hover, nav ul li a:hover {
-      color: #8a8a8a !important;
-    }
+.photo-3 {
+    grid-area: photo3;
+    height: 150px;
+    background-image: url('https://via.placeholder.com/300x150');
+}
 
-    .navbar .nav-link {
-      font-family: 'primer', sans-serif;
-      font-size: 20px;
-      color: #000000;
-      padding: 10px;
-      justify-content: end;
-    }
+.photo-4 {
+    grid-area: photo4;
+    height: 300px;
+    background-image: url('https://via.placeholder.com/600x300');
+}
 
-    .icon-link {
-      padding-top: 10px;
-      color: #000000;
-      width: 18px;
-      height: 18px;
-      margin-left: 1vw;
-      transition: color 0.3s ease;
-    }
-
-    .navbar-nav {
-      padding-top: 1%;
-      margin-right: 1%;
-      align-items: center;
-      justify-content: end;
-    }
-
-    .navbar .nav-item {
-      align-items: center;
-    }
-
-    .navbar .fa-instagram, .navbar .fa-tiktok {
-      width: 14px;
-      height: 14px;
-    }
-
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      justify-content: flex-end;
-      gap: 20px;
-      padding-right: 20px;
-    }
-
-    nav ul li {
-      display: inline;
-    }
-
-    /*#endregion*/
-
-    /*#region Photo Containers*/
-
-    .album-container {
-      position: relative;
-      justify-content: center; /* Center horizontally */
-      align-items: center; /* Center vertically if needed */
-      width: 100vw;
-      height: auto;
-      overflow: visible;
-    }
-
-    .photo-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    .photo {
-      position: relative;
-      width: 100%;
-      height: auto;
-      mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%);
-      -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%); /* For Safari */
-    }
-
-    .photo-container-1 {
-      position: relative;
-      display: inline-block;
-      margin-top: 20vh;
-      margin-bottom: 20vh;
-      width: 80vw;
-      height: auto;
-    }
-
-    .photo-1 {
-      background-image: url('images/modeling/prof/professional3.jpg');
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 1350px;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .overlay-text {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      color: white;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 5px;
-    }
-
-    /*#endregion*/
-
-    /*#region Footer*/
-
-    .footer {
-      width: 100%;
-      height: 20vh;
-      position: relative;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 2vh;
-      flex-shrink: 0;
-    }
-
-    .footer .nav-link {
-      font-family: 'primer', sans-serif;
-      font-size: 20px;
-      color: #ffffff;
-      transition: color 0.3s;
-      padding: 10 10px; /* Add uniform spacing */
-      justify-content: end;
-    }
-
-    .footer .nav-link:hover {
-      color: #8a8a8a; /* Light background color on hover */
-    }
-
-    /*#endregion*/
-
-    /* Add other critical styles here */
-  </style>
-
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!--Fonts-->
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/android-chrome-512x512.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
-  <link rel="manifest" href="images/icons/site.webmanifest">
-  <link rel="mask-icon" href="images/icons/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff"> <!--Setting the color of the address bar in mobile-->
+    </style>
 </head>
-
 <body>
-
-<main>
-  <div class="main-container">
-    <!--Navbar-->
-    <nav class="navbar" id="navbar">
-      <div class="container">
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-          <div class="offcanvas-body">
-            <h1 class="display-1 fw-bold"><a class="title" href="#">KAYLEE POSSAMAI</a></h1>
-            <div class="nav-items" id="nav-items">
-              <ul class="navbar-nav justify-content-end">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                <li class="nav-icon">
-                  <a class="icon-link" href="https://www.instagram.com/notokaykaylee" target="_blank">
-                    <img class="fab fa-instagram" src="images/icons/instagram-white.svg" alt="Instagram">
-                  </a>
-                </li>
-                <li class="nav-icon">
-                  <a class="icon-link" href="https://www.tiktok.com/@notkaylee_e" target="_blank">
-                    <img class="fab fa-tiktok" src="images/icons/tiktok-white.svg" alt="TikTok">
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="dropdown" id="dropdown">
-              <button type="button" class="dropbtn" id="dropbtn">
-                <img src="images/icons/bars-solid.svg" alt="Menu Icon" style="width: 20px; height: 20px;">
-              </button>
-              <div class="dropdown-content" id="dropdown-content">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="portfolio.html">Portfolio</a>
-                <a href="contact.html">Contact</a>
-                <a class="icon-link" href="https://www.instagram.com/notokaykaylee" target="_blank">
-                  <img class="fab fa-instagram" src="images/icons/instagram.svg" alt="Instagram">
-                </a>
-                <a class="icon-link" href="https://www.tiktok.com/@notkaylee_e" target="_blank">
-                  <img class="fab fa-tiktok" src="images/icons/tiktok.svg" alt="TikTok">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <div class="album-container">
-      <div class="photo-container">
-        <img
-          src="images/modeling/cover/cover-1600.jpg"
-          srcset="images/modeling/cover/cover-320.jpg 320w,
-                  images/modeling/cover/cover-480.jpg 480w,
-                  images/modeling/cover/cover-768.jpg 768w,
-                  images/modeling/cover/cover-1600.jpg 1600w"
-          sizes="(max-width: 600px) 480px, (max-width: 1200px) 768px, 1600px"
-          class="photo"
-          width="1600"
-          height="900"
-          loading="eager"
-          alt="Cover Photo">
-      </div>
+    <div class="photo-collage">
+        <div class="photo photo-1"></div>
+        <div class="photo photo-2"></div>
+        <div class="photo photo-3"></div>
+        <div class="photo photo-4"></div>
     </div>
-    <div class="photo-container-1">
-      <div class="photo-1"></div>
-      <div class="overlay-text"><p>Commercial Brands</p></div>
-    </div>
-
-    <!--Icons, instagram, tiktok-->
-    <footer class="footer">
-      <h1 class="display-2"><a class="nav-link" href="contact.html">booking.kaylee@gmail.com</a></h1>
-      <div class="content-container">
-        <div class="icon-container">
-          <a href="https://www.instagram.com/notokaykaylee" target="_blank" class="footer-link icon-link">
-            <img class="fab fa-instagram" src="images/icons/instagram-white.svg" alt="Instagram">
-          </a>
-          <a href="https://www.tiktok.com/@notkaylee_e" target="_blank" class="footer-link icon-link">
-            <img class="fab fa-tiktok" src="images/icons/tiktok-white.svg" alt="TikTok">
-          </a>
-        </div>
-      </div>
-    </footer>
-  </div>
-</main>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="scripts.js"></script>
 </body>
 </html>

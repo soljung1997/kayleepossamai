@@ -47,39 +47,35 @@ function scrollOverlayTextColor() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const photo1Container = document.querySelector('.photo-1');
-    const photo1Image = photo1Container.querySelector('img');
+    const photoContainers = document.querySelectorAll('.photo-individual');
 
     window.addEventListener('scroll', function() {
         const navbarHeightVH = 10; // Adjust if there's a fixed navbar
         const windowHeight = window.innerHeight;
         const navbarHeight = (navbarHeightVH / 100) * windowHeight; // Convert 10vh to pixels
         const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-        const containerTop = photo1Container.getBoundingClientRect().top + scrollPosition - navbarHeight;
-        const containerHeight = photo1Container.offsetHeight;
-        
-        if (scrollPosition >= containerTop && scrollPosition - navbarHeight < containerTop + containerHeight) {
-            
-            const visibleHeight = Math.max(0, containerHeight + navbarHeight - (scrollPosition - containerTop));
-            photo1Image.style.clipPath = `inset(0 0 ${containerHeight - visibleHeight + navbarHeight}px 0)`;
-            photo1Image.style.transform = `translateY(${scrollPosition - containerTop}px)`;
-        } else if (scrollPosition + windowHeight >= containerTop && scrollPosition + navbarHeight < containerTop) {
-            
-            const visibleHeight = Math.max(0, containerHeight - (containerTop + containerHeight - (scrollPosition + windowHeight)));
-            
-            photo1Image.style.clipPath = `inset(${containerHeight - visibleHeight + navbarHeight}px 0 0 0)`;
-            photo1Image.style.transform = `translateY(${scrollPosition - containerTop + navbarHeight}px)`;
-            
-            
-            
-        } else {
-            photo1Image.style.clipPath = 'inset(0 0 0 0)';
-            photo1Image.style.transform = 'translateY(0)';
-        }
 
-        
+        photoContainers.forEach(photoContainer => {
+            const photoImage = photoContainer.querySelector('img');
+            const containerTop = photoContainer.getBoundingClientRect().top + scrollPosition - navbarHeight;
+            const containerHeight = photoContainer.offsetHeight;
+
+            if (scrollPosition >= containerTop && scrollPosition - navbarHeight < containerTop + containerHeight) {
+                const visibleHeight = Math.max(0, containerHeight + navbarHeight - (scrollPosition - containerTop));
+                photoImage.style.clipPath = `inset(0 0 ${containerHeight - visibleHeight + navbarHeight}px 0)`;
+                photoImage.style.transform = `translateY(${scrollPosition - containerTop}px)`;
+            } else if (scrollPosition + windowHeight >= containerTop && scrollPosition + navbarHeight < containerTop) {
+                const visibleHeight = Math.max(0, containerHeight - (containerTop + containerHeight - (scrollPosition + windowHeight)));
+                photoImage.style.clipPath = `inset(${containerHeight - visibleHeight + navbarHeight}px 0 0 0)`;
+                photoImage.style.transform = `translateY(${scrollPosition - containerTop + navbarHeight}px)`;
+            } else {
+                photoImage.style.clipPath = 'inset(0 0 0 0)';
+                photoImage.style.transform = 'translateY(0)';
+            }
+        });
     });
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
