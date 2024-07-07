@@ -11,165 +11,15 @@
     <style>
         /* #region Critical CSS */
   
-        main {
-          display: flex;
-          unicode-bidi: isolate;
-        }
-  
-        body, html {
-            display: flex;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            font-family: "modernsans";
-            font-weight: 100;
-        }
-  
-        .main-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-direction: column;
-            width: 100vw;
-            padding: 0;
-            margin: 0;
-        }
-  
-        /*#endregion*/
-  
-        /*#region Navbar*/
-  
-        .navbar {
-            top: 0;
-            width: 100vw;
-            height: 10vh;
-            background: #ffffff;
-            color: #000;
-            border: none;
-            box-shadow: none;
-            justify-content: end;
-            align-items: center;
-        }
-  
-        .nav-items a, .nav-icon a, nav ul li a {
-            color: black;
-            text-decoration: none;
-            padding: 14px 20px;
-            display: inline-block;
-            transition: color 0.3s;
-        }
-  
-        .nav-items a:hover, .nav-icon a:hover, nav ul li a:hover {
-            color: #8a8a8a !important;
-        }
-  
-        .navbar .nav-link {
-            font-family: 'primer', sans-serif;
-            font-size: 20px;
-            color: #000000;
-            padding: 10px;
-            justify-content: end;
-        }
-  
-        .icon-link {
-            padding-top: 10px;
-            color: #000000;
-            font-size: 12;
-            margin-left: 1vw;
-            transition: color 0.3s ease;
-        }
-  
-        .navbar-nav {
-            padding-top: 1%;
-            margin-right: 1%;
-            align-items: center;
-            justify-content: end;
-        }
-  
-        .navbar .nav-item {
-            display: flex;
-            align-items: center;
-        }
-  
-        .navbar .fa-instagram, .navbar .fa-tiktok {
-            font-size: 14;
-        }
-  
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: flex-end;
-            gap: 20px;
-            padding-right: 20px;
-        }
-  
-        nav ul li {
-            display: inline;
-        }
-  
-        /*#endregion*/
-  
-        /*#region Photo Containers*/
-  
-        .album-container {
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically if needed */
-            width: 80vw;
-            height: auto;
-        }
-  
-        .photo-container {
-            width: 100%;
-            height: auto; /* Optional: makes the container take full viewport height */
-        }
+
         
-        .photo {
-          position: relative;
-          width: 100%;
-          height: auto;
-        }
-  
-        /*#endregion*/
-  
-        /*#region Footer*/
-  
-        .footer {
-            width: 100%;
-            height: 20vh;
-            position: relative;
-            background-color: #000000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 2vh;
-            flex-shrink: 0;
-        }
-  
-        .footer .nav-link{
-            font-family: 'primer', sans-serif;
-            font-size: 20px;
-            color: #ffffff;
-            transition: color 0.3s;
-            padding: 10 10px; /* Add uniform spacing */
-            justify-content: end;
-        }
-  
-        .footer .nav-link:hover {
-            color: #8a8a8a; /* Light background color on hover */
-        }
-  
-        /*#endregion*/
-  
         /* Add other critical styles here */
       </style>
   
 
     <link rel="stylesheet" href="css/styles.css"> 
+    <link rel="stylesheet" href="css/critstyles.css"> 
+    
         <!-- Favicons -->
         <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="192x192" href="images/icons/android-chrome-192x192.png">
@@ -184,50 +34,53 @@
 
     <body>
         <main>
-            <div class="main-container">
+            <div class="main-container" style="background-color:white">
                 <!--Navbar-->
-                <nav class="navbar fixed-top" data-bs-theme="dark" id="navbar">
-                    <div class="container" style="background-color: rgba(255, 255, 255, 0.5);">
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-                            <div class="offcanvas-body">
-                                <h1 class="display-1 fw-bold"><a class="title" href="#">KAYLEE POSSAMAI</a></h1>
-                                <div class="nav-items" id="nav-items">
-                                    <ul class="navbar-nav justify-content-end">
-                                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                                    <li class="nav-icon">
-                                        <a class="icon-link" href="https://www.instagram.com/notokaykaylee" target="_blank">
-                                          <img class="fab fa-instagram" src="images/icons/instagram.svg" alt="Instagram">
-                                        </a>
-                                      </li>
-                                      <li class="nav-icon">
-                                        <a class="icon-link" href="https://www.tiktok.com/@notkaylee_e" target="_blank">
-                                          <img class="fab fa-tiktok" src="images/icons/tiktok.svg" alt="TikTok">
-                                        </a>
-                                      </li>
-                                    </ul>
-                                </div>
-                                <div class="dropdown" id="dropdown">
-                                    <button class="dropbtn" id="dropbtn">☰</button>
-                                    <div class="dropdown-content" id="dropdown-content">
-                                        <a href="index.html">Home</a>
-                                        <a href="#">About</a>
-                                        <a href="#">Portfolio</a>
-                                        <a href="contact.html">Contact</a>
-                                        <a class="icon-link" href="https://www.instagram.com/notokaykaylee" target="_blank">
-                                            <img class="fab fa-instagram" src="images/icons/instagram.svg" alt="Instagram">
-                                          </a>
-                                          <a class="icon-link" href="https://www.tiktok.com/@notkaylee_e" target="_blank">
-                                            <img class="fab fa-tiktok" src="images/icons/tiktok.svg" alt="TikTok">
-                                          </a>
-                                    </div>
-                                </div>
+                <nav class="navbar" id="navbar" style="background-color:black">
+                    <div class="container">
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+                        <div class="offcanvas-body">
+                        <h1 class="display-1 fw-bold"><a class="title" href="#">KAYLEE POSSAMAI</a></h1>
+                        <div class="nav-items" id="nav-items">
+                            <ul class="navbar-nav justify-content-end">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                            <li class="nav-icon">
+                                <a class="icon-link" href="https://www.instagram.com/notokaykaylee" target="_blank">
+                                <img class="fab fa-instagram" src="images/icons/instagram-white.svg" alt="Instagram">
+                                </a>
+                            </li>
+                            <li class="nav-icon">
+                                <a class="icon-link" href="https://www.tiktok.com/@notkaylee_e" target="_blank">
+                                <img class="fab fa-tiktok" src="images/icons/tiktok-white.svg" alt="TikTok">
+                                </a>
+                            </li>
+                            </ul>
+                        </div>
+                        <div class="dropdown" id="dropdown">
+                            <button type="button" class="dropbtn" id="dropbtn">
+                            <img src="images/icons/bars-solid.svg" alt="Menu Icon" style="width: 20px; height: 20px;">
+                            </button>
+                            <div class="dropdown-content" id="dropdown-content">
+                            <a href="index.html">Home</a>
+                            <a href="about.html">About</a>
+                            <a href="portfolio.html">Portfolio</a>
+                            <a href="contact.html">Contact</a>
+                            <a class="icon-link" href="https://www.instagram.com/notokaykaylee" target="_blank">
+                                <img class="fab fa-instagram" src="images/icons/instagram.svg" alt="Instagram">
+                            </a>
+                            <a class="icon-link" href="https://www.tiktok.com/@notkaylee_e" target="_blank">
+                                <img class="fab fa-tiktok" src="images/icons/tiktok.svg" alt="TikTok">
+                            </a>
                             </div>
                         </div>
+                        </div>
+                    </div>
                     </div>
                 </nav>
+                
                 <div class="content-form">
                     <div class="form-container">
                         <h1 class="display-3">Connect with Kaylee    <output></output></h1>

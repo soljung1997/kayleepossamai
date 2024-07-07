@@ -126,7 +126,7 @@
     background: white; /* Adjust colors as needed */
     align-items: center;
     justify-content: center;
-    margin-top: 20vh;
+    padding-top: 5%;
     width: 50vh;
     margin: 5vh;
   }
@@ -277,10 +277,12 @@
     display: flex;
     flex-direction: row;
     width: 80vw;
-    align-items: top;
+    padding-top: 10%;
+    height: auto;
     justify-content: center;
     gap: 5vw;
   }
+  
   
   .flex-item {
     position: relative;

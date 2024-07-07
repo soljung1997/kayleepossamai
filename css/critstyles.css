@@ -1,6 +1,6 @@
 /* #region Critical CSS */
 
-    * { border: 1px solid red !important; }
+    /**{ border: 1px solid red !important; }*/
 
     main {
     width: 100%;
@@ -132,10 +132,10 @@
         position: relative;
         justify-content: center; /* Center horizontally */
         align-items: center; /* Center vertically if needed */
-        width: 100vw;
+        width: 100%;
         height: 100%;
-        padding-bottom: 20vh;
         overflow: visible;
+        box-sizing: border-box;
         z-index: 3;
     }
 
@@ -158,54 +158,121 @@
 
     .photo {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%);
     -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%); /* For Safari */
     }
 
-    .photo-container-1, .photo-container-2 {
+    .photo-container-1 {
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 1vh;
-        justify-content: flex-end;
-        width: 50vw;
+        padding-top: 0;
+        width: 50%;
         height: auto;
+    }
+
+    .photo-container-2 {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: auto;
+        align-items: end;
     }
 
     .album {
+        position: relative;
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        padding-top: 10%;
         width: 100%;
         height: auto;
     }
 
-    .photo-individual {
+    .photo-individual-1 img, .photo-individual-2 img, .photo-individual-3 img, .photo-individual-4 img {
+        display: block;
+        width: 100%;
+        height: auto; /* Ensures the height adjusts proportionally */
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+    .photo-individual-1 {
     position: relative;
+    display: inline-block;
     text-align: center;
-    width: 50vw;
+    width: 85%;
     display: flex;
-    flex-direction: column;
-    gap: 2vh;
     align-items: center;
     }
 
-    .photo-individual img {
-        width: 100%;
-        height: auto;
-        object-fit: cover; /* Ensures image covers the entire container */
+    .scroll-image-1{
+    position: relative;
+    width: 100%;
+    height: 100%; /* Ensure image scales correctly */
+    pointer-events: none;
+    margin-bottom: 10%;
+    margin-left: 20%;
+    z-index: 1;
     }
 
-    .scroll-image {
+    .photo-individual-2 {
     position: relative;
-    bottom: 0;
-    width: 50vw;
-    height: auto; /* Ensure image scales correctly */
+    text-align: center;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    }
+
+    .scroll-image-2 {
+    position: relative;
+    object-fit: cover;
+    width: 100%;
+    height: 100%; /* Ensure image scales correctly */
     pointer-events: none;
     z-index: 1;
     }
+
+    .photo-individual-3  {
+    position: relative;
+    text-align: center;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    }
+
+    .scroll-image-3 {
+    position: relative;
+    object-fit: cover;
+    width: 90%;
+    height: 100%; /* Ensure image scales correctly */
+    margin-bottom: 10%;
+    pointer-events: none;
+    z-index: 1;
+    }
+    
+    .photo-individual-4  {
+    position: relative;
+    text-align: center;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    max-height: 100%;
+    }
+
+    .scroll-image-4 {
+    position: relative;
+    object-fit: cover;
+    width: 100%;
+    height: 100%; /* Ensure image scales correctly */
+    margin-right: 40%;
+    pointer-events: none;
+    z-index: 1;
+    }
+
 
     .gradient-overlay {
         position: absolute;
@@ -240,6 +307,10 @@
         font-weight: bold;
         transition: color 2s;
         z-index: 4;
+    }
+
+    .color-change {
+        transition: color 2s;
     }
 
 
@@ -280,8 +351,17 @@
         position: relative;
         display: flex;
         width: 100%;
+        height: 20%;
+        padding-top: 10%;
+    }
+
+    .filler-2 {
+        position: relative;
+        background-color: transparent;
+        display: flex;
+        width: 100%;
         height: auto;
-        padding-bottom: 2000px;
+        padding-top: 10%;
     }
 
 
