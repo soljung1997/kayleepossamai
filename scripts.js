@@ -25,7 +25,7 @@ function scrollFunction() {
 function scrollBodyColor() {
     var scrollPosition = document.body.scrollTop || document.documentElement.scrollTop;
 
-    if (scrollPosition > 700) {
+    if (scrollPosition > 500) {
         document.body.style.backgroundColor = "#fff";
         document.body.style.color = "#fff"; /* White text */
     } else {
