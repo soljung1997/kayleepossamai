@@ -202,6 +202,7 @@
     padding-left: 0;
     color: #ffffff;
     background-color: inherit;
+    z-index: 2;
   }
   
   .display-2 {
@@ -274,6 +275,7 @@
   /* #region Form - about.html*/
   
   .flex-container {
+    color: white;
     display: flex;
     flex-direction: row;
     width: 80vw;
@@ -294,7 +296,7 @@
   }
   
   .flex-item img {
-    position: fixed;
+    position: sticky;
     max-width: 40vw;
     height: auto;
     top: 12vh;
@@ -376,6 +378,14 @@
   
   .icon-container {
     align-items: center;
+    display: flex;
+    gap: 0;
+  }
+
+  .icon-container-2 {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     display: flex;
     gap: 0;
   }
