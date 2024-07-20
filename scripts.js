@@ -55,9 +55,6 @@ function scrollBodyColor() {
     }
 }
 
-// Attach the function to the scroll event
-window.addEventListener('scroll', scrollBodyColor);
-
 
 function scrollOverlayTextColor() {
     var scrollPosition = document.body.scrollTop || document.documentElement.scrollTop;
