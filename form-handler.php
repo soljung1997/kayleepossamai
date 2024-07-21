@@ -33,18 +33,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Submission Response</title>
     <style>
-        /* Basic styles for the popup */
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            color: white;
+            font-family: "modernsans", sans-serif;
+        }
         .popup {
             position: fixed;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
+            background-color: #1a1a1a;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             text-align: center;
             z-index: 1000;
+            width: 80%;
+            max-width: 500px;
         }
         .overlay {
             position: fixed;
@@ -63,6 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-family: 'primer', sans-serif;
+        }
+        .close-btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
