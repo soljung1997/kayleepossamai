@@ -85,33 +85,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const img2 = document.querySelector('.photo-individual-2');
     const img3 = document.querySelector('.photo-individual-3');
     const img4 = document.querySelector('.photo-individual-4');
+    const img5 = document.querySelector('.photo-individual-5');
+    const img6 = document.querySelector('.photo-individual-6');
+    const img7 = document.querySelector('.photo-individual-7');
     
     // Store the original positions
     const containerOriginalTop = {
-        img1: img1.getBoundingClientRect().top,
-        img2: img2.getBoundingClientRect().top,
-        img3: img3.getBoundingClientRect().top,
-        img4: img4.getBoundingClientRect().top
+        img1: img1 ? img1.getBoundingClientRect().top : 0,
+        img2: img2 ? img2.getBoundingClientRect().top : 0,
+        img3: img3 ? img3.getBoundingClientRect().top : 0,
+        img4: img4 ? img4.getBoundingClientRect().top : 0,
+        img5: img5 ? img5.getBoundingClientRect().top : 0,
+        img6: img6 ? img6.getBoundingClientRect().top : 0,
+        img7: img7 ? img7.getBoundingClientRect().top : 0
     };
 
     window.addEventListener('scroll', function() {
-        //static variables
+        // Static variables
         const navbarHeightVH = 10; // Adjust if there's a fixed navbar
         const windowHeight = window.innerHeight;
         const navbarHeight = (navbarHeightVH / 100) * windowHeight; // Convert 10vh to pixels
         const windowTop = navbarHeight;
         const windowBottom = windowHeight;
-        //dynamic variables
+        // Dynamic variables
         const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-        
-        for (let i = 1; i <= 4; i++) {
+
+        for (let i = 1; i <= 7; i++) {
             let elements = `.photo-individual-${i}`;
-            let images = `.scroll-image-${i}`;
             const photoContainers = document.querySelectorAll(elements);
             
             photoContainers.forEach(element => {
                 const photoImage = element.querySelector('img');
-                //dynamic variables
+
+                // Log to see if the image is being processed
+                console.log(`Processing image in container .photo-individual-${i}:`, photoImage);
+
+                // Dynamic variables
                 const containerTop = element.getBoundingClientRect().top;
                 const containerBottom = element.getBoundingClientRect().bottom;
                 const containerHeight = element.offsetHeight;
@@ -120,25 +129,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Access the original position using the originalPos object
                 const originalPosition = containerOriginalTop[`img${i}`];
 
-                    //CB < WH && CT > NH - if bottom of container is lesser than original bottom (shouldnt it be greater?)
-                if (containerTop <= 0) { //if top of container touches bottom of VP
-                    //visibleHeight is the pixels height of the current container
+                console.log(`Container ${i} - Top: ${containerTop}, Bottom: ${containerBottom}, Height: ${containerHeight}`);
+
+                if (containerTop < 0) { // If top of container touches bottom of VP
                     const visibleHeight = -(containerTop);
                     if (containerHeight > windowHeight){
-                        //inset top right bottom left
-                        //has to inset containerheight(static) - visibleHeight(dynamic) - augmentedContainerHeight(static)
-                        const clip = photoImage.style.clipPath = `inset(0 0 ${(-containerTop) - augmentedContainerHeight}px 0)`; //has to be positive to 0
-                        const transform = photoImage.style.transform = `translateY(${-(containerTop) - augmentedContainerHeight}px)`; //should move with container height
-                    }else{
-                        //normal clip
-                        const clip = photoImage.style.clipPath = `inset(0 0 ${(-containerTop)}px 0)`; //has to be positive to 0
-                        const transform = photoImage.style.transform = `translateY(${-(containerTop)}px)`; //should move with container height
+                        photoImage.style.clipPath = `inset(0 0 ${(-containerTop) - augmentedContainerHeight}px 0)`;
+                        photoImage.style.transform = `translateY(${-(containerTop) - augmentedContainerHeight}px)`;
+                    } else {
+                        photoImage.style.clipPath = `inset(0 0 ${(-containerTop)}px 0)`;
+                        photoImage.style.transform = `translateY(${-(containerTop)}px)`;
                     }
                 } else if(containerTop <= windowBottom && containerBottom >= windowBottom){
-                    const visibleHeight = containerBottom - windowHeight; //will be a negative number, so convert
-                    const clip = photoImage.style.clipPath = `inset(${visibleHeight}px 0 0 0)`; //has to be positive to 0
-                    const transform = photoImage.style.transform = `translateY(${-(containerTop - windowHeight + containerHeight)}px)`; //transform bottom too, but with containerheight into consideration
-                } 
+                    const visibleHeight = containerBottom - windowHeight; // Will be a negative number, so convert
+                    photoImage.style.clipPath = `inset(${visibleHeight}px 0 0 0)`;
+                    photoImage.style.transform = `translateY(${-(containerTop - windowHeight + containerHeight)}px)`;
+                } else{
+                    photoImage.style.clipPath = `inset(0 0 0 0)`;
+                    photoImage.style.transform = `translateY(0)`;
+                    
+                }
             });
         }
     });

@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Send an email (this is a basic example, adjust as needed)
-    $to = "your-email@example.com"; // Replace with your email address
+    $to = "booking.kaylee@gmail.com"; // Replace with your email address
     $subject = "New contact form submission";
     $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
     $headers = "From: $email";

@@ -795,8 +795,20 @@ color: #8a8a8a; /* Light background color on hover */
     color: inherit;
     transition: color 0.3s ease;
   }
+
   
   .title:hover {
+    color: #8a8a8a;
+  }
+
+  .title-white {
+    font-size: 40px;
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+
+  .title-white:hover {
     color: #8a8a8a;
   }
   

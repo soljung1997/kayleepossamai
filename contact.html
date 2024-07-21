@@ -115,12 +115,19 @@
     }
 
     .icon-link {
-      padding-top: 10px;
-      color: #ffffff;
-      width: 18px;
-      height: 18px;
-      margin-left: 1vw;
-      transition: color 0.3s ease;
+    padding-top: 10px;
+    color: #ffffff;
+    width: 18px;
+    height: 18px;
+    margin-left: 1vw;
+    transition: color 0.3s ease;
+    filter: invert(1);
+    transition: filter 0.3s ease;
+    }
+
+    .icon-link:hover{
+      filter: invert(0.5);
+      transition: filter 0.3s ease;
     }
 
     .navbar-nav {
@@ -516,6 +523,7 @@
     .footer .nav-link {
       font-family: 'primer', sans-serif;
       font-size: 20px;
+      text-decoration: none;
       color: #ffffff;
       transition: color 0.3s;
       padding: 10 10px; /* Add uniform spacing */
@@ -643,12 +651,12 @@
                             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                             <li class="nav-icon">
                                 <a class="icon-link" href="https://www.instagram.com/notokaykaylee" target="_blank">
-                                <img class="fab fa-instagram" src="images/icons/instagram-white.svg" alt="Instagram">
+                                <img class="fab fa-instagram" src="images/icons/instagram.svg" alt="Instagram">
                                 </a>
                             </li>
                             <li class="nav-icon">
                                 <a class="icon-link" href="https://www.tiktok.com/@notkaylee_e" target="_blank">
-                                <img class="fab fa-tiktok" src="images/icons/tiktok-white.svg" alt="TikTok">
+                                <img class="fab fa-tiktok" src="images/icons/tiktok.svg" alt="TikTok">
                                 </a>
                             </li>
                             </ul>
@@ -677,8 +685,8 @@
                 
                 <div class="content-form">
                     <div class="form-container">
-                        <h1 class="display-3">Connect with Kaylee    <output></output></h1>
-                        <form action="https://example.com/sendmail" method="POST">
+                        <h1 class="display-3">Connect with Kaylee</h1>
+                        <form action="form-handler.php" method="POST">
                             <div class="form-group">
                                 <div>
                                     <label for="name">Your Name:</label>
@@ -704,10 +712,10 @@
                     <div class="content-container">
                       <div class="icon-container">
                           <a href="https://www.instagram.com/notokaykaylee" target="_blank" class="footer-link icon-link">
-                            <img class="fab fa-instagram" src="images/icons/instagram-white.svg" alt="Instagram">
+                            <img class="fab fa-instagram" src="images/icons/instagram.svg" alt="Instagram">
                         </a>
                         <a href="https://www.tiktok.com/@notkaylee_e" target="_blank" class="footer-link icon-link">
-                            <img class="fab fa-tiktok" src="images/icons/tiktok-white.svg" alt="Instagram">
+                            <img class="fab fa-tiktok" src="images/icons/tiktok.svg" alt="Instagram">
                         </a>
                       </div>
                     </div>
@@ -715,6 +723,6 @@
             </div>
         </main>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
-        <script src="scripts.js"></script>
+        <script src="js/scripts.js"></script>
     </body>
 </html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="preload" href="images/modeling/cover/cover-1600.jpg" as="image">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Solomon Jung">
     <title>Kaylee Possamai</title>
 
+    <link rel="stylesheet" href="css/styles.css">
     <style>
       /* #region Critical CSS */
 
@@ -15,6 +15,7 @@
 
     main {
     width: 100%;
+    height: auto;
     display: flex;
     }
 
@@ -28,10 +29,11 @@
     }
 
     body {
-    background-color: #000;
+    background-color: #ffffff;
     color: black;
     transition: background-color 2s ease, color 10s ease;
     }
+
 
     .main-container {
     display: flex;
@@ -40,6 +42,18 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
+    padding: 0;
+    margin: 0;
+    }
+
+    .main-container-portfolio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: white;
     padding: 0;
     margin: 0;
     }
@@ -77,6 +91,21 @@
     transition: background-color 1s ease; /* Smooth transition */
     }
 
+    .navbar-portfolio {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 10vh;
+    background-color: rgba(131, 131, 131, 0.6);
+    border: none;
+    box-shadow: none;
+    justify-content: end;
+    align-items: center;
+    display: flex;
+    z-index: 10;
+    transition: background-color 1s ease; /* Smooth transition */
+    }
+
     .navbar-gradient{
         position: absolute;
         top: 0;
@@ -105,18 +134,20 @@
     padding: 14px 20px;
     display: inline-block;
     transition: color 0.3s;
+    color: #6d6d6d;
     z-index: 2;
     }
 
     .nav-items a:hover, .nav-icon a:hover, nav ul li a:hover {
-    color: #8a8a8a !important;
+    color: #7c7c7c !important;
     z-index: 2;
     }
 
-    .navbar .nav-link {
+    .nav-link {
     font-family: 'primer', sans-serif;
     font-size: 20px;
-    color: #ffffff;
+    text-decoration: none;
+    color: #6d6d6d;
     padding: 10px;
     justify-content: end;
     }
@@ -128,6 +159,13 @@
     height: 18px;
     margin-left: 1vw;
     transition: color 0.3s ease;
+    filter: invert(1);
+    transition: filter 0.3s ease;
+    }
+
+    .icon-link:hover{
+      filter: invert(0.5);
+      transition: filter 0.3s ease;
     }
 
     .navbar-nav {
@@ -149,6 +187,7 @@
         height: 18px;
         z-index: 2;
     }
+
     .fa-instagram, .fa-tiktok{
         color: #fff;
         z-index: 2;
@@ -171,6 +210,28 @@
     /*#endregion*/
 
     /*#region Photo Containers*/
+
+    .display-1 {
+      font-family: 'advent', sans-serif;
+      font-weight: 200;
+      padding-left: 0;
+      color: #000;
+      background-color: inherit;
+      z-index: 2;
+    }
+
+    .display-1-white {
+      font-family: 'advent', sans-serif;
+      font-weight: 200;
+      padding-left: 0;
+      color: #fff;
+      background-color: inherit;
+      z-index: 2;
+    }
+
+    .display-1-white a:hover{
+      color: #7c7c7c;
+    }
 
     .album-container {
         display: flex;
@@ -195,6 +256,13 @@
         z-index: 1;
         pointer-events: none;
         transition: opacity 2s ease;
+    }
+
+    .portfolio-album{
+      display: flex;
+      position: relative;
+      height: 100%;
+      width: 100%;
     }
 
     .photo-container {
@@ -270,6 +338,22 @@
         z-index: 1;
         pointer-events: none;
         transition: opacity 2s ease;
+    }
+
+    .photo-container-3 {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 80%;
+        gap: 1%;
+        margin-left: 1.3%;
+        padding-top: 7%;
+        padding-bottom: 10%;
+        align-items: end;
+        background-color: #ffffff00;
+        opacity: 1;
+        transition: opacity 2s ease;
+        z-index: 2;
     }
 
     .album {
@@ -385,6 +469,56 @@
     overflow: hidden;
     }
 
+    .photo-individual-5, .photo-individual-6, .photo-individual-7 {
+    position: relative;
+    text-align: center;
+    width: 32%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4%;
+    opacity: 0.85;
+    color: #5f5f5f;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    }
+
+    .photo-individual-5:hover, .photo-individual-6:hover, .photo-individual-7:hover{
+      opacity: 1;
+      color: #ffffff;
+      transition: opacity 0.3s ease, color 0.3s ease;
+    }
+
+    .scroll-image-5 {
+    position: relative;
+    object-fit: cover;
+    width: 100%;
+    height: 100%; /* Ensure image scales correctly */
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    }
+
+    .scroll-image-6 {
+    position: relative;
+    object-fit: cover;
+    width: 100%;
+    height: 100%; /* Ensure image scales correctly */
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    }
+
+    .scroll-image-7 {
+    position: relative;
+    object-fit: cover;
+    width: 100%;
+    height: 100%; /* Ensure image scales correctly */
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    }
 
     .gradient-overlay {
         position: absolute;
@@ -443,6 +577,18 @@
     .overlay-text-3 {
         margin-top: 2%;
         left: 10%;
+    }
+
+    .overlay-text-4 {
+        position: absolute;
+        font-size: 3vw;
+        color: inherit;
+        font-family: 'opensans', sans-serif;
+        font-weight: bold;
+        margin-top: 2%;
+        bottom: 20%;
+        opacity: 1;
+        z-index: 3;
     }
 
     .text-box{
@@ -518,19 +664,6 @@
     gap: 2vh;
     flex-shrink: 0;
     z-index: 5;
-    }
-    
-    .footer .nav-link {
-    font-family: 'primer', sans-serif;
-    font-size: 20px;
-    color: #ffffff;
-    transition: color 0.3s;
-    padding: 10 10px; /* Add uniform spacing */
-    justify-content: end;
-    }
-
-    .footer .nav-link:hover {
-    color: #8a8a8a; /* Light background color on hover */
     }
 
         /*#endregion*/
@@ -615,12 +748,21 @@
         background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(223, 223, 223, 1) 100%);
         z-index: 1;
     }
+    
+    .filler-7 {
+        position: relative;
+        background-color: white;
+        display: flex;
+        width: 100%;
+        height: auto;
+        padding-top: 5%;
+        z-index: 1;
+    }
 
 
     /* Add other critical styles here */
     </style>
 
-    <link rel="stylesheet" href="css/styles.css">
      <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="images/icons/android-chrome-192x192.png">
@@ -636,13 +778,13 @@
   <body>
 
     <main>
-      <div class="main-container">
+      <div class="main-container-portfolio">
         <!--Navbar-->
-        <nav class="navbar" id="navbar">
+        <nav class="navbar" style="background-color: #000;" id="navbar">
           <div class="container">
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
               <div class="offcanvas-body">
-                <h1 class="display-1 fw-bold"><a class="title" href="#">KAYLEE POSSAMAI</a></h1>
+                <h1 class="display-1 fw-bold"><a class="title-white" href="#">KAYLEE POSSAMAI</a></h1>
                 <div class="nav-items" id="nav-items">
                   <ul class="navbar-nav justify-content-end">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -651,12 +793,12 @@
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     <li class="nav-icon">
                       <a class="icon-link" href="https://www.instagram.com/notokaykaylee" target="_blank">
-                        <img class="fab fa-instagram" src="images/icons/instagram-white.svg" alt="Instagram">
+                        <img class="fab fa-instagram" src="images/icons/instagram.svg" alt="Instagram">
                       </a>
                     </li>
                     <li class="nav-icon">
                       <a class="icon-link" href="https://www.tiktok.com/@notkaylee_e" target="_blank">
-                        <img class="fab fa-tiktok" src="images/icons/tiktok-white.svg" alt="TikTok">
+                        <img class="fab fa-tiktok" src="images/icons/tiktok.svg" alt="TikTok">
                       </a>
                     </li>
                   </ul>
@@ -671,10 +813,10 @@
                     <a href="portfolio.html">Portfolio</a>
                     <a href="contact.html">Contact</a>
                     <a class="icon-link" href="https://www.instagram.com/notokaykaylee" target="_blank">
-                      <img class="fab fa-instagram" src="images/icons/instagram.svg" alt="Instagram">
+                      <img class="fab fa-instagram" src="images/icons/instagram-white.svg" alt="Instagram">
                     </a>
                     <a class="icon-link" href="https://www.tiktok.com/@notkaylee_e" target="_blank">
-                      <img class="fab fa-tiktok" src="images/icons/tiktok.svg" alt="TikTok">
+                      <img class="fab fa-tiktok" src="images/icons/tiktok-white.svg" alt="TikTok">
                     </a>
                   </div>
                 </div>
@@ -683,83 +825,34 @@
           </div>
         </nav>
 
-        <div class="album-container">
-          <div class="album-container-background"></div>
-          <div class="photo-container">
-            <img
-              src="images/modeling/cover/cover3.jpg"
-              srcset="images/modeling/cover/photo-4-1.jpg"
-              class="photo"
-              width="1600"
-              height="900"
-              loading="eager"
-              alt="Cover Photo">
+        <div class="portfolio-album">
+          <div class="photo-container-3">
+            <a class="photo-individual-5" href="portfolio1.html">
+              <img class="scroll-image-5" src="images/cover/portfolio/prof-black-1-1920-2290.png" width="1920" height="2217">
+              <div class="overlay-text-4">Professional Portfolio</div>
+            </a>
+            <a class="photo-individual-6" href="portfolio2.html">
+              <img class="scroll-image-6" src="images/cover/portfolio/semi-3-1920-2290.png" width="1080" height="1350">
+              <div class=" overlay-text-4">Casual Portfolio</div>
+            </a>
+            <a class="photo-individual-7" href="portfolio3.html">
+              <img class="scroll-image-7" src="images/cover/portfolio/semi-2-1920-2290.png" width="1080" height="1350">
+              <div class="overlay-text-4">Featured Album</div>
+            </a>
           </div>
         </div>
-        <div class="album">
-          <div class="photo-container-1">
-            <div class="photo-container-background"></div>
-            <div class="filler-4-gradient-1"></div>
-            <div class="photo-individual-1">
-              <img class="scroll-image-1" src="images/modeling/main/casual/casual-1-1920.png" width="1920" height="2217">
-              <div class="overlay-text-1">Lifestyle Moments</div>
-            </div>
-            <div class="filler-3"></div>
-            <div class="photo-individual-2">
-              <img class="scroll-image-2" src="images/modeling/main/landscape/green-landscape-1.jpg" width="2160" height="1440">
-              <div class="overlay-text-2">Featured Sessions</div>
-            </div>
-            <div class="follow-container">
-              <div class="follow-link-container">
-                <a class="follow-link" href="index.html">Follow Me</a>
-                <br>
-                <br>
-                <div class="icon-container-2">
-                  <a href="https://www.instagram.com/notokaykaylee" target="_blank" class="footer-link icon-link">
-                    <img class="fab fa-instagram" src="images/icons/instagram.svg" alt="Instagram">
-                  </a>
-                  <a href="https://www.tiktok.com/@notkaylee_e" target="_blank" class="footer-link icon-link">
-                    <img class="fab fa-tiktok" src="images/icons/tiktok.svg" alt="TikTok">
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="filler-2"></div>
-          </div>
-          <div class="photo-container-2">
-            <div class="photo-container-2-background"></div>
-            <div class="filler-4"></div>
-            <div class="text-box">
-              <br><br>
-              Olá! Meu nome é Kaylee Possamai, I'm a model and Instagram influencer working in South Korea. 
-              I started my career as a model since 2020, and throughout my career, I’ve discovered my passion 
-              for art and doing all kinds of work reacting in Youtube, giving a fresh perspective of Korea as a Brazilian living here. 
-              I spend time working as a barista as well, having fun talking with people from all over the world. 
-              Thank you for finding the time to see what I’ve been up to.
-              <br><br><br><br>
-            </div>
-            <div class="filler-2"></div>
-            <div class="photo-individual-3">
-              <img class="scroll-image-3" src="images/modeling/cover/semi-3-1920-1.png" width="1080" height="1350">
-              <div class=" overlay-text-3">Portfolio Highlights</div>
-            </div>
-            <div class="filler-6"></div>
-            <div class="photo-individual-4">
-              <img class="scroll-image-4" src="images/modeling/main/prof/prof-black-1-1920.png" width="1080" height="1350">
-            </div>
-            <div class="filler-4-gradient-2"></div>
-          </div>
-        </div>
+        <div class="filler-7"></div>
+
         <!--Icons, instagram, tiktok-->
         <footer class="footer">
             <h1 class="display-2"><a class="nav-link" href="contact.html">booking.kaylee@gmail.com</a></h1>
           <div class="content-container">
             <div class="icon-container">
               <a href="https://www.instagram.com/notokaykaylee" target="_blank" class="footer-link icon-link">
-                <img class="fab fa-instagram" src="images/icons/instagram-white.svg" alt="Instagram">
+                <img class="fab fa-instagram" src="images/icons/instagram.svg" alt="Instagram">
               </a>
               <a href="https://www.tiktok.com/@notkaylee_e" target="_blank" class="footer-link icon-link">
-                <img class="fab fa-tiktok" src="images/icons/tiktok-white.svg" alt="TikTok">
+                <img class="fab fa-tiktok" src="images/icons/tiktok.svg" alt="TikTok">
               </a>
             </div>
           </div>
@@ -770,6 +863,6 @@
     
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="scripts.js"></script>
+  <script src="js/scripts.js"></script>
   </body>
 </html>
