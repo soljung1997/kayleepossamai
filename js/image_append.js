@@ -41,13 +41,14 @@ $(document).ready(function() {
                         console.error('CORS error or network issue. Please make sure you are running this on a server.');
                     } else {
                         console.error(`Error fetching URL for image ${i}:`, error);
+                        console.error('Response:', xhr.responseText);
                     }
                 }
             });
         }
     }
 
-    // First call add_urls.php to add new URLs to the database
+    // First call append_urls.php to add new URLs to the database
     $.ajax({
         url: '../php/append_urls.php',  // Relative path to the PHP file
         method: 'GET',
@@ -72,6 +73,7 @@ $(document).ready(function() {
                             console.error('CORS error or network issue. Please make sure you are running this on a server.');
                         } else {
                             console.error('Error fetching image count:', error);
+                            console.error('Response:', xhr.responseText);
                         }
                     }
                 });
@@ -83,7 +85,9 @@ $(document).ready(function() {
             if (xhr.status === 0) {
                 console.error('CORS error or network issue. Please make sure you are running this on a server.');
             } else {
-                console.error('Error calling add_urls.php:', error);
+                console.error('Error calling append_urls.php:', error);
+                console.error('Status:', status);
+                console.error('Response:', xhr.responseText);
             }
         }
     });
