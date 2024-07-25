@@ -1,6 +1,6 @@
 <?php
 include 'db_connection.php';
-include 'addrow.php';
+include 'add_row.php';
 
 function getNumberOfRows($conn, $tableName) {
     $stmt = $conn->prepare("SELECT COUNT(*) FROM $tableName");
@@ -42,10 +42,12 @@ function addAlbum($conn, $portfolioId) {
 
 if (isset($_GET['portfolioId'])) {
     $portfolioId = intval($_GET['portfolioId']); // Get the portfolio ID from the AJAX request
+    echo "Received portfolio ID: $portfolioId\n"; // Debugging statement
     addAlbum($conn, $portfolioId);
 } else {
     echo "No portfolio ID provided.";
 }
 
 $conn->close();
+
 ?>
