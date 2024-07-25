@@ -5,7 +5,7 @@ $baseDir = 'images/modeling';
 
 // Function to get album_id for a given id
 function getAlbumId($conn, $id) {
-    $stmt = $conn->prepare('SELECT album_id FROM image_table WHERE id = ?');
+    $stmt = $conn->prepare('SELECT album_id FROM portfolio_database WHERE id = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $stmt->bind_result($albumId);
@@ -16,7 +16,7 @@ function getAlbumId($conn, $id) {
 
 // Function to get photo_id for a given id
 function getPhotoId($conn, $id) {
-    $stmt = $conn->prepare('SELECT photo_id FROM image_table WHERE id = ?');
+    $stmt = $conn->prepare('SELECT photo_id FROM portfolio_database WHERE id = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $stmt->bind_result($photoId);

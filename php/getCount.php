@@ -1,6 +1,5 @@
 <?php
 // Include database connection
-include 'db_connection.php';
 
 function getNumberOfRows($conn, $tableName) {
     $stmt = $conn->prepare("SELECT COUNT(*) FROM $tableName");
@@ -17,5 +16,4 @@ function getNumberOfRows($conn, $tableName) {
 
     // Return the count as a JSON response
     echo json_encode(['count' => $count]);
-    $conn->close();
 ?>
