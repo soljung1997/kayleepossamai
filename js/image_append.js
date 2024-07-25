@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
     const portfolioId = $('body').data('portfolio-id'); // Get the portfolio ID from the HTML data attribute
 
     // Function to fetch image URLs and update the gallery
@@ -49,31 +49,35 @@ $(document).ready(function(){
 
     // First call add_urls.php to add new URLs to the database
     $.ajax({
-        url: '../php/add_urls.php',  // Relative path to the PHP file
+        url: '../php/append_urls.php',  // Relative path to the PHP file
         method: 'GET',
         data: { portfolioId: portfolioId },
+        dataType: 'json',  // Expect JSON response
         success: function(response) {
-            console.log('add_urls.php response:', response);
-            
-            // Fetch the number of images after updating the database
-            $.ajax({
-                url: '../php/getCount.php',  // Relative path to the PHP file
-                method: 'GET',
-                data: { portfolioId: portfolioId },
-                dataType: 'json',
-                success: function(data) {
-                    const count = data.count;
-                    console.log('Image count:', count);
-                    fetchAndDisplayImages(count, portfolioId);
-                },
-                error: function(xhr, status, error) {
-                    if (xhr.status === 0) {
-                        console.error('CORS error or network issue. Please make sure you are running this on a server.');
-                    } else {
-                        console.error('Error fetching image count:', error);
+            console.log('append_urls.php response:', response);
+            if (response.status === 'success') {
+                // Fetch the number of images after updating the database
+                $.ajax({
+                    url: '../php/getCount.php',  // Relative path to the PHP file
+                    method: 'GET',
+                    data: { portfolioId: portfolioId },
+                    dataType: 'json',
+                    success: function(data) {
+                        const count = data.count;
+                        console.log('Image count:', count);
+                        fetchAndDisplayImages(count, portfolioId);
+                    },
+                    error: function(xhr, status, error) {
+                        if (xhr.status === 0) {
+                            console.error('CORS error or network issue. Please make sure you are running this on a server.');
+                        } else {
+                            console.error('Error fetching image count:', error);
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                console.error('Error adding URLs:', response.message);
+            }
         },
         error: function(xhr, status, error) {
             if (xhr.status === 0) {

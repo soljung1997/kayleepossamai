@@ -26,28 +26,23 @@ function addAlbum($conn, $portfolioId) {
                 foreach ($photoIterator as $photo) {
                     if ($photo->isFile() && !$photo->isDot()) {
                         if (insertData($conn, $portfolioId, $albumId, $imageCount)) {
-                            echo "Inserted data for portfolioId: $portfolioId, albumId: $albumId, imageCount: $imageCount\n";
-                        } else {
-                            echo "Failed to insert data for portfolioId: $portfolioId, albumId: $albumId, imageCount: $imageCount\n";
+                            // Inserting data without outputting any debug information
                         }
                         $imageCount++;
                     }
                 }
             }
         }
-    } else {
-        echo "The portfolio directory does not exist.";
     }
 }
 
 if (isset($_GET['portfolioId'])) {
     $portfolioId = intval($_GET['portfolioId']); // Get the portfolio ID from the AJAX request
-    echo "Received portfolio ID: $portfolioId\n"; // Debugging statement
     addAlbum($conn, $portfolioId);
+    echo json_encode(["status" => "success", "message" => "URLs added to the database."]);
 } else {
-    echo "No portfolio ID provided.";
+    echo json_encode(["status" => "error", "message" => "No portfolio ID provided."]);
 }
 
 $conn->close();
-
 ?>
