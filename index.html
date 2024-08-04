@@ -35,18 +35,9 @@ body, html {
 }
 
 .main-container-about {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-  padding: 0;
-  margin: 0;
   background-color: #fff;
   color: #000;
   transition: background-color 2s ease;
-  z-index: 1;
 }
 
 /*#endregion*/
@@ -105,19 +96,18 @@ color: #8a8a8a !important;
 z-index: 2;
 }
 
-.navbar .nav-link {
-font-family: 'primer', sans-serif;
-font-size: 20px;
-color: #ffffff;
-padding: 10px;
-justify-content: end;
-}
+  .navbar .nav-link {
+  font-family: 'primer', sans-serif;
+  font-size: 1.1vw;
+  color: #ffffff;
+  padding: 10px;
+  justify-content: end;
+  }
 
 .icon-link {
     padding-top: 10px;
     color: #ffffff;
-    width: 18px;
-    height: 18px;
+    width: 1vw;
     margin-left: 1vw;
     transition: color 0.3s ease;
     filter: invert(1);
@@ -144,8 +134,7 @@ align-items: center;
 
 .navbar .fa-instagram, .navbar .fa-tiktok {
   color: #fff;
-  width: 18px;
-  height: 18px;
+  width: 1.1vw;
   z-index: 2;
 }
 .fa-instagram, .fa-tiktok{
@@ -321,12 +310,13 @@ z-index: 2;
 }
 
 .photo-individual-2 {
-position: relative;
-text-align: center;
-width: 100%;
-display: flex;
-align-items: center;
-z-index: 1;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 1;
 }
 
 .scroll-image-2 {
@@ -339,13 +329,13 @@ z-index: 1;
 }
 
 .photo-individual-3  {
-position: relative;
-text-align: center;
-width: 95%;
-height: auto;
-display: flex;
-align-items: center;
-z-index: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 95%;
+  height: auto;
+  align-items: center;
+  z-index: 1;
 }
 
 .scroll-image-3 {
@@ -406,42 +396,48 @@ overflow: hidden;
   object-fit: contain;
 }
 
-.overlay-text-1, .overlay-text-3  {
-  position: absolute;
-  top: 60%;
-  width: 40%;
-  text-align: left;
+.overlay-text-1, .overlay-text-2, .overlay-text-3 {
+  display: flex;
+  width: 50%;
   color: white;
+  position: absolute;
+  text-align: left;
+  justify-content: center;
+  margin-top: 10%;
   font-size: 3vw;
   font-family: 'opensans', sans-serif;
   font-weight: bold;
-  transition: color 2s;
   z-index: 4;
+  transition: color 2s ease;
 }
 
 .overlay-text-1 {
-  margin-top: 10%;
-  left: 40%;
+  bottom: 17%;
+  margin-top: 2%;
 }
 
 .overlay-text-2 {
-  position: absolute;
-  left: 67%;
-  top: 20%;
-  width: 40%;
-  text-align: left;
-  color: white;
-  font-size: 3vw;
-  font-family: 'opensans', sans-serif;
-  font-weight: bold;
-  transition: color 2s;
-  z-index: 4;
+  text-align: center;
+  width: 100%;
+  bottom: 10%;
   margin-top: 2%;
 }
 
 .overlay-text-3 {
+  text-align: center;
+  width: 100%;
+  bottom: 5%;
   margin-top: 2%;
-  left: 10%;
+}
+
+.overlay-text-1-hyperlink, .overlay-text-2-hyperlink, .overlay-text-3-hyperlink{
+  text-decoration: none;
+  color: inherit;
+  text-align: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  width: inherit;
 }
 
 .text-box{
@@ -451,7 +447,7 @@ overflow: hidden;
   height: auto;
   font-family: 'opensans', sans-serif;
   font-weight: bold;
-  font-size: 2em;
+  font-size: 2vw;
   text-align: justify;
   margin-right: 5%;
   color: #fff;
@@ -484,14 +480,9 @@ overflow: hidden;
   justify-content: center;
   font-family: 'opensans', sans-serif;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 3vw;
   color: black;
   text-decoration: none;
-}
-
-.follow-link:hover{
-  color: #8a8a8a;
-  transition: color 0.3s ease;
 }
 
 .follow-link-2{
@@ -512,22 +503,22 @@ overflow: hidden;
 /*#region Footer*/
 
 .footer {
-width: 100%;
-height: 25%;
-position: relative;
-background-color: #000000;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-gap: 2vh;
-flex-shrink: 0;
-z-index: 5;
+  width: 100%;
+  height: 25%;
+  position: relative;
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2vh;
+  flex-shrink: 0;
+  z-index: 5;
 }
 
 .footer .nav-link {
 font-family: 'primer', sans-serif;
-font-size: 20px;
+font-size: 1.1vw;
 color: #ffffff;
 text-decoration: none;
 transition: color 0.3s;
@@ -667,7 +658,7 @@ color: #8a8a8a; /* Light background color on hover */
                 </div>
                 <div class="dropdown" id="dropdown">
                   <button type="button" class="dropbtn" id="dropbtn">
-                    <img src="images/icons/bars-solid.svg" alt="Menu Icon" style="width: 20px; height: 20px;">
+                    <img class="dropbtn-svg" src="images/icons/bars-solid.svg" alt="Menu Icon">
                   </button>
                   <div class="dropdown-content" id="dropdown-content">
                     <a href="index.html">Home</a>
@@ -706,16 +697,16 @@ color: #8a8a8a; /* Light background color on hover */
             <div class="filler-4-gradient-1"></div>
             <div class="photo-individual-1">
               <img class="scroll-image-1" src="images/cover/main/casual/casual-1-1920.png" width="1920" height="2217">
-              <div class="overlay-text-1">Lifestyle Moments</div>
+              <div class="overlay-text-1"><a class=overlay-text-1-hyperlink href="portfolio2.html">Casual Portfolio</a></div>
             </div>
             <div class="filler-3"></div>
             <div class="photo-individual-2">
               <img class="scroll-image-2" src="images/cover/main/landscape/green-landscape-1.jpg" width="2160" height="1440">
-              <div class="overlay-text-2">Featured Sessions</div>
+              <div class="overlay-text-2"><a class="overlay-text-2-hyperlink" href="portfolio3.html">Featured Sessions</a></div>
             </div>
             <div class="follow-container">
               <div class="follow-link-container">
-                <a class="follow-link" href="index.html">Follow Me</a>
+                <div class="follow-link">Follow Me</div>
                 <br>
                 <br>
                 <div class="icon-container-2">
@@ -747,7 +738,7 @@ color: #8a8a8a; /* Light background color on hover */
             <div class="filler-2"></div>
             <div class="photo-individual-3">
               <img class="scroll-image-3" src="images/cover/semi-3-1920-1.png" width="1080" height="1350">
-              <div class=" overlay-text-3">Portfolio Highlights</div>
+              <div class="overlay-text-3"><a class="overlay-text-3-hyperlink" href="portfolio1.html">Professional Porfolio</a></div>
             </div>
             <div class="filler-6"></div>
             <div class="photo-individual-4">
