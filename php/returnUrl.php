@@ -1,7 +1,7 @@
 <?php
 include 'db_connection.php';
 
-$baseDir = 'images/modeling';
+$baseDir = '../images/modeling';
 
 // Function to get album_id for a given id
 function getAlbumId($conn, $id) {
@@ -14,9 +14,9 @@ function getAlbumId($conn, $id) {
     return $albumId;
 }
 
-// Function to get photo_id for a given id
+// Function to get image_id for a given id
 function getPhotoId($conn, $id) {
-    $stmt = $conn->prepare('SELECT photo_id FROM portfolio_database WHERE id = ?');
+    $stmt = $conn->prepare('SELECT image_id FROM portfolio_database WHERE id = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $stmt->bind_result($photoId);
@@ -25,16 +25,21 @@ function getPhotoId($conn, $id) {
     return $photoId;
 }
 
-
-//returns the url based on the count given by the js
+// Function to return the image URL based on the count
 function returnUrl($conn, $tableName, $portfolioId, $count){
-    // Loop through portfolios, albums, and photos, and appends them to js
+    // Fetch album and photo IDs
     $albumId = getAlbumId($conn, $count);
     $photoId = getPhotoId($conn, $count);
-    $imageUrl = "photos/portfolio$portfolioId/album$albumId/photo$photoId.jpg";
+    
+    // Construct the image URL
+    $imageUrl = "$baseDir/portfolio$portfolioId/album$albumId/photo$photoId.jpg";
+    
     return $imageUrl;
 }
 
+// Assuming you're getting the correct data and returning it in JSON format
+$response = ['imageUrl' => returnUrl($conn, 'portfolio_database', $_GET['portfolioId'], $_GET['count'])];
+echo json_encode($response);
 
 $conn->close();
 ?>

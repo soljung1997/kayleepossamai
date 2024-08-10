@@ -52,4 +52,5 @@ if (isset($_GET['portfolioId'])) {
 
 $conn->close();
 echo json_encode($response);
+
 ?>
