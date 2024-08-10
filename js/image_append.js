@@ -7,7 +7,7 @@ $(document).ready(function() {
 
         // Get the first ID for this portfolio_id
         $.ajax({
-            url: '../php/getFirstId.php',  // PHP script to get the first ID for the portfolio
+            url: '../php/getCount.php',  // PHP script to get the first ID for the portfolio (from getCount.php)
             method: 'GET',
             data: { portfolioId: portfolioId },
             dataType: 'json',
