@@ -26,7 +26,7 @@ function getPhotoId($conn, $id) {
 }
 
 // Function to return the image URL based on the count
-function returnUrl($conn, $tableName, $portfolioId, $count){
+function returnUrl($conn, $tableName, $portfolioId, $count, $baseDir){
     // Fetch album and photo IDs
     $albumId = getAlbumId($conn, $count);
     $photoId = getPhotoId($conn, $count);
@@ -38,7 +38,7 @@ function returnUrl($conn, $tableName, $portfolioId, $count){
 }
 
 // Assuming you're getting the correct data and returning it in JSON format
-$response = ['imageUrl' => returnUrl($conn, 'portfolio_database', $_GET['portfolioId'], $_GET['count'])];
+$response = ['imageUrl' => returnUrl($conn, 'portfolio_database', $_GET['portfolioId'], $_GET['count'], $baseDir)];
 echo json_encode($response);
 
 $conn->close();
