@@ -2,50 +2,84 @@ $(document).ready(function() {
     const portfolioId = $('body').data('portfolio-id'); // Get the portfolio ID from the HTML data attribute
 
     // Function to fetch image URLs and update the gallery
-    function fetchAndDisplayImages(count, portfolioId) {
-        if (count === 0) {
-            console.log('The database is empty.');
-            $('#galleryContainer').append('<p>No images found in the database.</p>');
-            return;
-        }
+    function fetchAndDisplayImages(portfolioId) {
+        let currentId;
 
-        for (let i = 1; i <= count; i++) {
-            $.ajax({
-                url: '../php/returnUrl.php',  // Relative path to the PHP file
-                method: 'GET',
-                data: {
-                    portfolioId: portfolioId,
-                    count: i
-                },
-                dataType: 'json',
-                success: function(response) {
-                    console.log(`Fetched URL for image ${i}:`, response);
-                    const imageUrl = response.imageUrl;
+        // Get the first ID for this portfolio_id
+        $.ajax({
+            url: '../php/getFirstId.php',  // PHP script to get the first ID for the portfolio
+            method: 'GET',
+            data: { portfolioId: portfolioId },
+            dataType: 'json',
+            success: function(data) {
+                currentId = data.first_id;  // Start with the first ID
 
-                    // Extract albumId from imageUrl
-                    const albumIdMatch = imageUrl.match(/album(\d+)\//);
-                    if (albumIdMatch) {
-                        const albumId = albumIdMatch[1];
-
-                        // Check if the album div already exists, if not create it
-                        if ($('#album' + albumId).length === 0) {
-                            $('#galleryContainer').append('<div id="album' + albumId + '" class="album">Album ' + albumId + '</div>');
-                        }
-
-                        // Append the image to the respective album div
-                        $('#album' + albumId).append('<img src="' + imageUrl + '" alt="Image ' + i + '">');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    if (xhr.status === 0) {
-                        console.error('CORS error or network issue. Please make sure you are running this on a server.');
-                    } else {
-                        console.error(`Error fetching URL for image ${i}:`, error);
-                        console.error('Response:', xhr.responseText);
-                    }
+                if (currentId === undefined) {
+                    console.log('No images found in the database.');
+                    $('#galleryContainer').append('<p>No images found in the database.</p>');
+                    return;
                 }
-            });
-        }
+
+                // While loop to fetch and display images for the current portfolio
+                function fetchNextImage() {
+                    $.ajax({
+                        url: '../php/returnUrl.php',  // Relative path to the PHP file
+                        method: 'GET',
+                        data: {
+                            portfolioId: portfolioId,
+                            count: currentId  // Use the actual ID
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.error) {
+                                console.log(`No more images found for portfolio ${portfolioId}.`);
+                                return;  // Exit the loop if no more images are found
+                            }
+
+                            console.log(`Fetched URL for image ID ${currentId}:`, response);
+                            const imageUrl = response.imageUrl;
+
+                            // Extract albumId from imageUrl
+                            const albumIdMatch = imageUrl.match(/album(\d+)\//);
+                            if (albumIdMatch) {
+                                const albumId = albumIdMatch[1];
+
+                                // Check if the album div already exists, if not create it
+                                if ($('#album' + albumId).length === 0) {
+                                    $('#galleryContainer').append('<div id="album' + albumId + '" class="album">Album ' + albumId + '</div>');
+                                }
+
+                                // Append the image to the respective album div
+                                $('#album' + albumId).append('<img src="' + imageUrl + '" alt="Image ' + currentId + '">');
+                            }
+
+                            // Increment the current ID and continue the loop
+                            currentId++;
+                            fetchNextImage();  // Recursively call to fetch the next image
+                        },
+                        error: function(xhr, status, error) {
+                            if (xhr.status === 0) {
+                                console.error('CORS error or network issue. Please make sure you are running this on a server.');
+                            } else {
+                                console.error(`Error fetching URL for image ID ${currentId}:`, error);
+                                console.error('Response:', xhr.responseText);
+                            }
+                        }
+                    });
+                }
+
+                // Start the while loop
+                fetchNextImage();
+            },
+            error: function(xhr, status, error) {
+                if (xhr.status === 0) {
+                    console.error('CORS error or network issue. Please make sure you are running this on a server.');
+                } else {
+                    console.error('Error fetching first ID:', error);
+                    console.error('Response:', xhr.responseText);
+                }
+            }
+        });
     }
 
     // First call append_urls.php to add new URLs to the database
@@ -57,26 +91,7 @@ $(document).ready(function() {
         success: function(response) {
             console.log('append_urls.php response:', response);
             if (response.status === 'success') {
-                // Fetch the number of images after updating the database
-                $.ajax({
-                    url: '../php/getCount.php',  // Relative path to the PHP file
-                    method: 'GET',
-                    data: { portfolioId: portfolioId },
-                    dataType: 'json',
-                    success: function(data) {
-                        const count = data.count;
-                        console.log('Image count:', count);
-                        fetchAndDisplayImages(count, portfolioId);
-                    },
-                    error: function(xhr, status, error) {
-                        if (xhr.status === 0) {
-                            console.error('CORS error or network issue. Please make sure you are running this on a server.');
-                        } else {
-                            console.error('Error fetching image count:', error);
-                            console.error('Response:', xhr.responseText);
-                        }
-                    }
-                });
+                fetchAndDisplayImages(portfolioId);
             } else {
                 console.error('Error adding URLs:', response.message);
             }
