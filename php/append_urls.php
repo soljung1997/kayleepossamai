@@ -1,5 +1,6 @@
 <?php
 
+// Enable error reporting for debugging
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -7,6 +8,7 @@ error_reporting(E_ALL);
 include 'db_connection.php';
 include 'add_row.php';
 
+// Function to check if the table is empty
 function isTableEmpty($conn, $tableName) {
     $stmt = $conn->prepare("SELECT COUNT(*) FROM $tableName");
     if (!$stmt) {
@@ -19,6 +21,7 @@ function isTableEmpty($conn, $tableName) {
     return $count === 0;
 }
 
+// Function to reset AUTO_INCREMENT if necessary
 function resetAutoIncrement($conn, $tableName) {
     $stmt = $conn->prepare("ALTER TABLE $tableName AUTO_INCREMENT = 1");
     if (!$stmt) {
@@ -31,6 +34,7 @@ function resetAutoIncrement($conn, $tableName) {
     return ["status" => "success"];
 }
 
+// Function to add album data to the database
 function addAlbum($conn, $portfolioId) {
     $portfolioDir = '../images/modeling/portfolio' . $portfolioId;
 
@@ -38,9 +42,8 @@ function addAlbum($conn, $portfolioId) {
         return ["status" => "error", "message" => "Directory does not exist: " . $portfolioDir];
     }
 
-    // Check if the table is empty
+    // Check if the table is empty and reset AUTO_INCREMENT if it is
     if (isTableEmpty($conn, 'portfolio_database')) {
-        // Reset AUTO_INCREMENT only if the table is empty
         $resetResult = resetAutoIncrement($conn, 'portfolio_database');
         if ($resetResult['status'] !== 'success') {
             return $resetResult;
@@ -59,6 +62,7 @@ function addAlbum($conn, $portfolioId) {
 
             foreach ($photoIterator as $photo) {
                 if ($photo->isFile() && !$photo->isDot()) {
+                    // Use the updated insertData function that checks for duplicates
                     if (!insertData($conn, $portfolioId, $albumId, $imageCount)) {
                         return ["status" => "error", "message" => "Failed to insert data for portfolioId: $portfolioId, albumId: $albumId, imageCount: $imageCount"];
                     }
