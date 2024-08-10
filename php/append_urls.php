@@ -6,7 +6,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include 'db_connection.php';
-include 'add_row.php';
+include 'add_row.php'; // This should contain the insertData function
 
 // Function to check if the table is empty
 function isTableEmpty($conn, $tableName) {
