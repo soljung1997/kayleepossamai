@@ -7,11 +7,44 @@ error_reporting(E_ALL);
 include 'db_connection.php';
 include 'add_row.php';
 
+function isTableEmpty($conn, $tableName) {
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM $tableName");
+    if (!$stmt) {
+        return ["status" => "error", "message" => "Failed to check table count: " . $conn->error];
+    }
+    $stmt->execute();
+    $stmt->bind_result($count);
+    $stmt->fetch();
+    $stmt->close();
+    return $count === 0;
+}
+
+function resetAutoIncrement($conn, $tableName) {
+    $stmt = $conn->prepare("ALTER TABLE $tableName AUTO_INCREMENT = 1");
+    if (!$stmt) {
+        return ["status" => "error", "message" => "Failed to reset AUTO_INCREMENT: " . $conn->error];
+    }
+    if (!$stmt->execute()) {
+        return ["status" => "error", "message" => "Failed to execute AUTO_INCREMENT reset: " . $stmt->error];
+    }
+    $stmt->close();
+    return ["status" => "success"];
+}
+
 function addAlbum($conn, $portfolioId) {
     $portfolioDir = '../images/modeling/portfolio' . $portfolioId;
 
     if (!is_dir($portfolioDir)) {
         return ["status" => "error", "message" => "Directory does not exist: " . $portfolioDir];
+    }
+
+    // Check if the table is empty
+    if (isTableEmpty($conn, 'portfolio_database')) {
+        // Reset AUTO_INCREMENT only if the table is empty
+        $resetResult = resetAutoIncrement($conn, 'portfolio_database');
+        if ($resetResult['status'] !== 'success') {
+            return $resetResult;
+        }
     }
 
     $albumIterator = new DirectoryIterator($portfolioDir);
