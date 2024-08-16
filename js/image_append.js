@@ -44,15 +44,15 @@ $(document).ready(function() {
                         let scrollAmount = 0;
                         if (mouseX < centerX) {
                             // Mouse is to the left of the center
-                            scrollAmount = (centerX - mouseX) / centerX * scrollSpeed;
+                            scrollAmount = -((centerX - mouseX) / centerX * scrollSpeed);
                         } else {
                             // Mouse is to the right of the center
                             scrollAmount = (mouseX - centerX) / centerX * scrollSpeed;
                         }
 
                         // Update scroll position
-                        container_scroll.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
-                        console.log('Scroll left:', -scrollAmount);
+                        container_scroll.scrollLeft = scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
+                        console.log('Scroll left:', scrollAmount);
                     });
 
                     // Optional: Reset scroll position when mouse leaves
