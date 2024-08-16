@@ -31,7 +31,7 @@ $(document).ready(function() {
                         const containerWidth = reference_rect.width;
                         const mouseX = e.clientX - rect.left; // Mouse position within the container
                         const centerX = containerWidth / 2; // Center of the container
-                        const scrollSpeed = 0.2; // Adjust scroll speed as needed
+                        const scrollSpeed = 0.05; // Adjust scroll speed as needed
 
                         console.log('Container Rect:', rect);
                         console.log('Container Width:', containerWidth);
@@ -44,15 +44,16 @@ $(document).ready(function() {
                         if (mouseX < centerX) {
                             // Mouse is to the left of the center
                             scrollAmount = (centerX - mouseX) / centerX * scrollSpeed;
+                            console.log('Scroll left:', scrollAmount);
                             container.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
                         } else {
                             // Mouse is to the right of the center
                             scrollAmount = (mouseX - centerX) / centerX * scrollSpeed;
+                            console.log('Scroll left:', scrollAmount);
                             container.scrollLeft += scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
                         }
 
                         // Update scroll position
-                        console.log('Scroll left:', scrollAmount);
                     });
 
                     // Optional: Reset scroll position when mouse leaves
