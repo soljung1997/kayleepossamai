@@ -7,7 +7,7 @@ $(document).ready(function() {
 
         // Get the first ID for this portfolio_id
         $.ajax({
-            url: '../php/getCount.php',  // PHP script to get the first ID for the portfolio (from getCount.php)
+            url: '../php/getCount.php',  // PHP script to get the first ID for the portfolio
             method: 'GET',
             data: { portfolioId: portfolioId },
             dataType: 'json',
@@ -16,54 +16,39 @@ $(document).ready(function() {
 
                 if (currentId === undefined) {
                     console.log('No images found in the database.');
-                    $('#galleryContainer').append('<p>No images found in the database.</p>');
+                    $('#portfolioContainer').append('<p>No images found in the database.</p>');
                     return;
                 }
 
-                // Function to initialize scrolling functionality
-                function initializeScrolling() {
-                    const containers = document.querySelectorAll('.gallery .album-portfolio .portfolio-container');
+                // Function to initialize hover-based scrolling
+                function initializeHoverScrolling() {
+                    const container = document.querySelector('#portfolioContainer');
 
-                    containers.forEach(container => {
-                        // Horizontal scrolling with mouse wheel (reduced speed)
-                        container.addEventListener('wheel', function(e) {
-                            e.preventDefault();
-                            const scrollAmount = e.deltaY * 0.2; // Scale down the scroll amount to 20%
-                            container.scrollLeft += scrollAmount;
-                        });
+                    container.addEventListener('mousemove', function(e) {
+                        const rect = container.getBoundingClientRect();
+                        const containerWidth = rect.width;
+                        const mouseX = e.clientX - rect.left; // Mouse position within the container
+                        const centerX = containerWidth / 2; // Center of the container
+                        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+                        const scrollSpeed = 0.2; // Adjust scroll speed as needed
 
-                        let isDown = false;
-                        let startX;
-                        let scrollLeft;
+                        // Calculate scroll amount based on mouse position
+                        let scrollAmount = 0;
+                        if (mouseX < centerX) {
+                            // Mouse is to the left of the center
+                            scrollAmount = (centerX - mouseX) / centerX * scrollSpeed;
+                        } else {
+                            // Mouse is to the right of the center
+                            scrollAmount = (mouseX - centerX) / centerX * scrollSpeed;
+                        }
 
-                        // Mouse down event
-                        container.addEventListener('mousedown', (e) => {
-                            isDown = true;
-                            startX = e.pageX - container.offsetLeft;
-                            scrollLeft = container.scrollLeft;
-                            container.style.cursor = "grabbing"; // Change cursor to grabbing during drag
-                        });
+                        // Update scroll position
+                        container.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
+                    });
 
-                        // Mouse leave event
-                        container.addEventListener('mouseleave', () => {
-                            isDown = false;
-                            container.style.cursor = "grab"; // Revert cursor after drag
-                        });
-
-                        // Mouse up event
-                        container.addEventListener('mouseup', () => {
-                            isDown = false;
-                            container.style.cursor = "grab"; // Revert cursor after drag
-                        });
-
-                        // Mouse move event
-                        container.addEventListener('mousemove', (e) => {
-                            if (!isDown) return;
-                            e.preventDefault();
-                            const x = e.pageX - container.offsetLeft;
-                            const walk = (x - startX) * 0.2; // Scale down dragging speed to 20%
-                            container.scrollLeft = scrollLeft - walk;
-                        });
+                    // Optional: Reset scroll position when mouse leaves
+                    container.addEventListener('mouseleave', function() {
+                        container.scrollLeft = 0;
                     });
                 }
 
@@ -82,35 +67,19 @@ $(document).ready(function() {
                                 console.log(`No more images found for portfolio ${portfolioId}.`);
                                 return;  // Exit the loop if no more images are found
                             }
-                        
+
                             console.log(`Fetched URL for image ID ${currentId}:`, response);
                             const imageUrl = response.imageUrl;
-                        
-                            // Extract albumId from imageUrl
-                            const albumIdMatch = imageUrl.match(/album(\d+)\//);
-                            if (albumIdMatch) {
-                                const albumId = albumIdMatch[1];
-                        
-                                // Check if the album div already exists, if not create it
-                                if ($('#album' + albumId).length === 0) {
-                                    $('#galleryContainer').append('<div id="album' + albumId + '" class="album-portfolio">' + '</div>');
-                                }
-                        
-                                // Check if the portfolio-container div exists, if not create it
-                                if ($('#album' + albumId + ' .portfolio-container').length === 0) {
-                                    $('#album' + albumId).append('<div class="portfolio-container"></div>');
-                                }
-                        
-                                // Append the image to the respective portfolio-container div
-                                $('#album' + albumId + ' .portfolio-container').append('<img src="' + imageUrl + '" alt="Image ' + currentId + '" class="portfolio-image">');
-                            }
-                        
+
+                            // Append the image to the single portfolio-container
+                            $('#portfolioContainer').append('<img src="' + imageUrl + '" alt="Image ' + currentId + '" class="portfolio-image">');
+
                             // Increment the current ID and continue the loop
                             currentId++;
                             fetchNextImage();  // Recursively call to fetch the next image
 
-                            // Initialize scrolling functionality after the image is appended
-                            initializeScrolling();
+                            // Initialize hover-based scrolling after the image is appended
+                            initializeHoverScrolling();
                         },                        
                         error: function(xhr, status, error) {
                             if (xhr.status === 0) {
