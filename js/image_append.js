@@ -41,11 +41,17 @@ $(document).ready(function() {
 
                         // Calculate scroll amount based on mouse position
                         let scrollAmount = 0;
-                        
-                        scrollAmount = (centerX - mouseX) / centerX * scrollSpeed;
+                        if (mouseX < centerX) {
+                            // Mouse is to the left of the center
+                            scrollAmount = (centerX - mouseX) / centerX * scrollSpeed;
+                            container.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
+                        } else {
+                            // Mouse is to the right of the center
+                            scrollAmount = (mouseX - centerX) / centerX * scrollSpeed;
+                            container.scrollLeft += scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
+                        }
 
                         // Update scroll position
-                        container.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
                         console.log('Scroll left:', scrollAmount);
                     });
 
