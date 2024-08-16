@@ -31,7 +31,7 @@ $(document).ready(function() {
         let scrollingDirection = 0;
         let isScrolling = false;
         const friction = 0.95; // Friction factor to simulate gradual slowdown
-        const scrollSpeedFactor = 10; // Speed factor for scrolling
+        const scrollSpeedFactor = 1; // Speed factor for scrolling
 
         // Get the first ID for this portfolio_id
         $.ajax({
@@ -52,11 +52,8 @@ $(document).ready(function() {
                 function handleMouseMove(e) {
                     const container = document.querySelector('#portfolioContainer');
                     const rect = container.getBoundingClientRect();
-                    const reference = document.querySelector('body');
-                    const reference_rect = reference.getBoundingClientRect();
-                    const containerWidth = reference_rect.width;
                     const mouseX = e.clientX - rect.left; // Mouse position within the container
-                    const centerX = containerWidth / 2; // Center of the container
+                    const centerX = rect.width / 2; // Center of the container
 
                     // Calculate speed and direction
                     if (lastMouseX !== 0) {
