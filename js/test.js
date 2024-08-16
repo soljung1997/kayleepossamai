@@ -1,37 +1,31 @@
+function throttle(func, limit) {
+    let lastFunc;
+    let lastRan;
+    return function() {
+        const context = this;
+        const args = arguments;
+        if (!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(function() {
+                if ((Date.now() - lastRan) >= limit) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
+    };
+}
+
+
 $(document).ready(function() {
     const portfolioId = $('body').data('portfolio-id'); // Get the portfolio ID from the HTML data attribute
 
-    // Throttle function to limit how often a function can be executed
-    function throttle(func, limit) {
-        let lastFunc;
-        let lastRan;
-        return function() {
-            const context = this;
-            const args = arguments;
-            if (!lastRan) {
-                func.apply(context, args);
-                lastRan = Date.now();
-            } else {
-                clearTimeout(lastFunc);
-                lastFunc = setTimeout(function() {
-                    if ((Date.now() - lastRan) >= limit) {
-                        func.apply(context, args);
-                        lastRan = Date.now();
-                    }
-                }, limit - (Date.now() - lastRan));
-            }
-        };
-    }
-
     // Function to fetch image URLs and update the gallery
     function fetchAndDisplayImages(portfolioId) {
-        let currentId = 0; // Initialize currentId here
-        let lastMouseX = 0;
-        let scrollSpeed = 0;
-        let scrollingDirection = 0;
-        let isScrolling = false;
-        const friction = 0.95; // Friction factor to simulate gradual slowdown
-        const scrollSpeedFactor = 10; // Speed factor for scrolling
+        let currentId;
 
         // Get the first ID for this portfolio_id
         $.ajax({
@@ -48,7 +42,7 @@ $(document).ready(function() {
                     return;
                 }
 
-                // Function to handle mouse movement
+                // Throttled function to handle mouse move
                 function handleMouseMove(e) {
                     const container = document.querySelector('#portfolioContainer');
                     const rect = container.getBoundingClientRect();
@@ -57,51 +51,43 @@ $(document).ready(function() {
                     const containerWidth = reference_rect.width;
                     const mouseX = e.clientX - rect.left; // Mouse position within the container
                     const centerX = containerWidth / 2; // Center of the container
+                    const scrollSpeed = 10; // Adjust scroll speed as needed
 
-                    // Calculate speed and direction
-                    if (lastMouseX !== 0) {
-                        const deltaX = mouseX - lastMouseX;
-                        scrollSpeed = Math.abs(deltaX) * scrollSpeedFactor;
-                        scrollingDirection = deltaX > 0 ? 1 : -1;
-                        isScrolling = true;
+                    console.log('Container Rect:', rect);
+                    console.log('Container Width:', containerWidth);
+                    console.log('Mouse X Position:', mouseX);
+                    console.log('Center X Position:', centerX);
+                    console.log('Scroll Speed:', scrollSpeed);
+
+                    // Calculate scroll amount based on mouse position
+                    let scrollAmount = 0;
+                    if (mouseX < centerX) {
+                        // Mouse is to the left of the center
+                        scrollAmount = (centerX - mouseX) / centerX * scrollSpeed;
+                        console.log('Scroll left:', scrollAmount);
+                        container.scrollLeft -= scrollAmount; // Use calculated scrollAmount
+                    } else if(mouseX > centerX) {
+                        // Mouse is to the right of the center
+                        scrollAmount = (mouseX - centerX) / centerX * scrollSpeed;
+                        console.log('Scroll left:', scrollAmount);
+                        container.scrollLeft += scrollAmount; // Use calculated scrollAmount
                     }
-
-                    lastMouseX = mouseX;
                 }
 
                 const throttledMouseMove = throttle(handleMouseMove, 50); // Throttle to run every 50ms
 
-                function continueScrolling() {
-                    if (isScrolling) {
-                        const container = document.querySelector('#portfolioContainer');
-                        container.scrollLeft += scrollSpeed * scrollingDirection; // Scroll based on speed and direction
-
-                        // Gradually reduce speed to simulate friction
-                        scrollSpeed *= friction;
-
-                        if (scrollSpeed < 0.1) {
-                            scrollSpeed = 0;
-                            isScrolling = false; // Stop scrolling when speed is minimal
-                        }
-                    }
-                }
-
                 function initializeHoverScrolling() {
                     const container = document.querySelector('#portfolioContainer');
+
                     container.addEventListener('mousemove', throttledMouseMove);
-                    setInterval(continueScrolling, 20); // Periodically continue scrolling
 
                     // Optional: Reset scroll position when mouse leaves
                     container.addEventListener('mouseleave', function() {
                         container.scrollLeft = 0;
-                        lastMouseX = 0;
-                        scrollSpeed = 0;
-                        scrollingDirection = 0;
-                        isScrolling = false;
                     });
                 }
 
-                // Function to fetch and display the next image
+                // While loop to fetch and display images for the current portfolio
                 function fetchNextImage() {
                     $.ajax({
                         url: '../php/returnUrl.php',  // Relative path to the PHP file
@@ -114,13 +100,13 @@ $(document).ready(function() {
                         success: function(response) {
                             if (response.error) {
                                 console.log(`No more images found for portfolio ${portfolioId}.`);
-                                return;  // Exit if no more images are found
+                                return;  // Exit the loop if no more images are found
                             }
 
                             console.log(`Fetched URL for image ID ${currentId}:`, response);
                             const imageUrl = response.imageUrl;
 
-                            // Append the image to the portfolio container
+                            // Append the image to the single portfolio-container
                             $('#portfolioContainer').append('<img src="' + imageUrl + '" alt="Image ' + currentId + '" class="portfolio-image">');
 
                             // Increment the current ID and continue the loop
@@ -129,7 +115,7 @@ $(document).ready(function() {
 
                             // Initialize hover-based scrolling after the image is appended
                             initializeHoverScrolling();
-                        },
+                        },                        
                         error: function(xhr, status, error) {
                             if (xhr.status === 0) {
                                 console.error('CORS error or network issue. Please make sure you are running this on a server.');
@@ -141,7 +127,7 @@ $(document).ready(function() {
                     });
                 }
 
-                // Start fetching images
+                // Start the while loop
                 fetchNextImage();
             },
             error: function(xhr, status, error) {
