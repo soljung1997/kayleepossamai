@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const containers = document.querySelectorAll('.portfolio-container');
+    // Select all portfolio-container elements within album-portfolio, which are inside the gallery
+    const containers = document.querySelectorAll('.gallery .album-portfolio .portfolio-container');
 
     if (containers.length === 0) {
-        console.error('No containers found!');
+        console.error('No portfolio containers found!');
         return;
     }
 
@@ -12,8 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // Horizontal scrolling with mouse wheel
         container.addEventListener('wheel', function(e) {
             console.log('Mouse wheel detected');
-            e.preventDefault();
-            container.scrollLeft += e.deltaY;
+            e.preventDefault(); // Prevent default vertical scrolling
+            container.scrollLeft += e.deltaY; // Scroll horizontally
         });
 
         // Variables for dragging
@@ -46,11 +47,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Mouse move event
         container.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
+            if (!isDown) return; // Exit if mouse is not down
             console.log('Mouse move event');
             e.preventDefault();
             const x = e.pageX - container.offsetLeft;
-            const walk = (x - startX) * 2; // Multiply by 2 for faster scrolling
+            const walk = (x - startX) * 2; // Adjust the scroll speed
             container.scrollLeft = scrollLeft - walk;
         });
     });
