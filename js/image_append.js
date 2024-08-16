@@ -23,6 +23,7 @@ $(document).ready(function() {
                 // Function to initialize hover-based scrolling
                 function initializeHoverScrolling() {
                     const container = document.querySelector('#galleryContainer');
+                    const container_scroll = document.querySelector('#portfolioContainer');
 
                     container.addEventListener('mousemove', function(e) {
                         const rect = container.getBoundingClientRect();
@@ -43,12 +44,12 @@ $(document).ready(function() {
                         }
 
                         // Update scroll position
-                        container.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
+                        container_scroll.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
                     });
 
                     // Optional: Reset scroll position when mouse leaves
                     container.addEventListener('mouseleave', function() {
-                        container.scrollLeft = 0;
+                        container_scroll.scrollLeft = 0;
                     });
                 }
 
