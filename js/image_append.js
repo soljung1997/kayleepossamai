@@ -35,10 +35,10 @@ $(document).ready(function() {
                                 console.log(`No more images found for portfolio ${portfolioId}.`);
                                 return;  // Exit the loop if no more images are found
                             }
-
+                        
                             console.log(`Fetched URL for image ID ${currentId}:`, response);
                             const imageUrl = response.imageUrl;
-
+                        
                             // Extract albumId from imageUrl
                             const albumIdMatch = imageUrl.match(/album(\d+)\//);
                             if (albumIdMatch) {
@@ -57,11 +57,11 @@ $(document).ready(function() {
                                 // Append the image to the respective portfolio-container div
                                 $('#album' + albumId + ' .portfolio-container').append('<img src="' + imageUrl + '" alt="Image ' + currentId + '" class="portfolio-image">');
                             }
-
+                        
                             // Increment the current ID and continue the loop
                             currentId++;
                             fetchNextImage();  // Recursively call to fetch the next image
-                        },
+                        },                        
                         error: function(xhr, status, error) {
                             if (xhr.status === 0) {
                                 console.error('CORS error or network issue. Please make sure you are running this on a server.');
