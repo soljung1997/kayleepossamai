@@ -46,7 +46,7 @@ $(document).ready(function() {
                         
                                 // Check if the album div already exists, if not create it
                                 if ($('#album' + albumId).length === 0) {
-                                    $('#galleryContainer').append('<div id="album' + albumId + '" class="album">Album ' + albumId + '</div>');
+                                    $('#galleryContainer').append('<div id="album' + albumId + '" class="album-portfolio">' + '</div>');
                                 }
                         
                                 // Check if the portfolio-container div exists, if not create it
