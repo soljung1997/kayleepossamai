@@ -31,7 +31,7 @@ $(document).ready(function() {
         let scrollingDirection = 0;
         let isScrolling = false;
         const friction = 0.95; // Friction factor to simulate gradual slowdown
-        const scrollSpeedFactor = 1; // Speed factor for scrolling
+        const scrollSpeedFactor = 0.5; // Speed factor for scrolling
 
         // Get the first ID for this portfolio_id
         $.ajax({
@@ -88,14 +88,8 @@ $(document).ready(function() {
                     container.addEventListener('mousemove', throttledMouseMove);
                     setInterval(continueScrolling, 20); // Periodically continue scrolling
 
-                    // Optional: Reset scroll position when mouse leaves
-                    container.addEventListener('mouseleave', function() {
-                        container.scrollLeft = 0;
-                        lastMouseX = 0;
-                        scrollSpeed = 0;
-                        scrollingDirection = 0;
-                        isScrolling = false;
-                    });
+                    
+                    
                 }
 
                 // Function to fetch and display the next image
