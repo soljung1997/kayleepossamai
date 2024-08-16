@@ -25,10 +25,11 @@ $(document).ready(function() {
                     const containers = document.querySelectorAll('.gallery .album-portfolio .portfolio-container');
 
                     containers.forEach(container => {
-                        // Horizontal scrolling with mouse wheel
+                        // Horizontal scrolling with mouse wheel (reduced speed)
                         container.addEventListener('wheel', function(e) {
                             e.preventDefault();
-                            container.scrollLeft += e.deltaY;
+                            const scrollAmount = e.deltaY * 0.2; // Scale down the scroll amount to 20%
+                            container.scrollLeft += scrollAmount;
                         });
 
                         let isDown = false;
@@ -60,7 +61,7 @@ $(document).ready(function() {
                             if (!isDown) return;
                             e.preventDefault();
                             const x = e.pageX - container.offsetLeft;
-                            const walk = (x - startX) * 2; // Adjust scroll speed
+                            const walk = (x - startX) * 0.2; // Scale down dragging speed to 20%
                             container.scrollLeft = scrollLeft - walk;
                         });
                     });
