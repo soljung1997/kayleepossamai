@@ -43,7 +43,7 @@ $(document).ready(function() {
                         let scrollAmount = 0;
                         if (mouseX < centerX) {
                             // Mouse is to the left of the center
-                            scrollAmount = -((centerX - mouseX) / centerX * scrollSpeed);
+                            scrollAmount = (centerX - mouseX) / centerX * scrollSpeed;
                         } else {
                             // Mouse is to the right of the center
                             scrollAmount = (mouseX - centerX) / centerX * scrollSpeed;
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
                     // Optional: Reset scroll position when mouse leaves
                     container.addEventListener('mouseleave', function() {
-                        container_scroll.scrollLeft = 0;
+                        container.scrollLeft = 0;
                     });
                 }
 
