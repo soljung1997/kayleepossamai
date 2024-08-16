@@ -22,28 +22,28 @@ $(document).ready(function() {
 
                 // Function to initialize hover-based scrolling
                 function initializeHoverScrolling() {
-                    const container = document.querySelector('#portfolioContainer');
+                    const container = document.querySelector('#galleryContainer');
 
                     container.addEventListener('mousemove', function(e) {
                         const rect = container.getBoundingClientRect();
                         const containerWidth = rect.width;
-                        const viewportWidth = window.innerWidth;
                         const mouseX = e.clientX - rect.left; // Mouse position within the container
                         const centerX = containerWidth / 2; // Center of the container
+                        const maxScrollLeft = container.scrollWidth - container.clientWidth;
                         const scrollSpeed = 0.2; // Adjust scroll speed as needed
 
-                        // Calculate scroll amount based on mouse position relative to viewport
+                        // Calculate scroll amount based on mouse position
                         let scrollAmount = 0;
                         if (mouseX < centerX) {
                             // Mouse is to the left of the center
-                            scrollAmount = ((centerX - mouseX) / centerX) * scrollSpeed * viewportWidth;
+                            scrollAmount = (centerX - mouseX) / centerX * scrollSpeed;
                         } else {
                             // Mouse is to the right of the center
-                            scrollAmount = ((mouseX - centerX) / centerX) * scrollSpeed * viewportWidth;
+                            scrollAmount = (mouseX - centerX) / centerX * scrollSpeed;
                         }
 
                         // Update scroll position
-                        container.scrollLeft += scrollAmount; // Scroll right for mouse on right side, left for mouse on left side
+                        container.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
                     });
 
                     // Optional: Reset scroll position when mouse leaves
