@@ -30,8 +30,8 @@ $(document).ready(function() {
         let scrollSpeed = 0;
         let scrollingDirection = 0;
         let isScrolling = false;
-        const friction = 0.95; // Friction factor to simulate gradual slowdown
-        const scrollSpeedFactor = 0.3; // Speed factor for scrolling
+        const friction = 0.98; // Friction factor to simulate gradual slowdown
+        const scrollSpeedFactor = 0.5; // Speed factor for scrolling
 
         // Get the first ID for this portfolio_id
         $.ajax({
@@ -54,13 +54,17 @@ $(document).ready(function() {
                     const rect = container.getBoundingClientRect();
                     const mouseX = e.clientX - rect.left; // Mouse position within the container
                     const centerX = rect.width / 2; // Center of the container
+                    let deltaX;
 
-                    // Calculate speed and direction
                     if (lastMouseX !== 0) {
-                        const deltaX = mouseX - lastMouseX;
+                        deltaX = mouseX - lastMouseX;
                         scrollSpeed = Math.abs(deltaX) * scrollSpeedFactor;
                         scrollingDirection = deltaX > 0 ? 1 : -1;
                         isScrolling = true;
+
+                        // Debug logs
+                        console.log(`MouseX: ${mouseX}, LastMouseX: ${lastMouseX}, DeltaX: ${deltaX}`);
+                        console.log(`ScrollSpeed: ${scrollSpeed}, ScrollingDirection: ${scrollingDirection}`);
                     }
 
                     lastMouseX = mouseX;
@@ -76,6 +80,9 @@ $(document).ready(function() {
                         // Gradually reduce speed to simulate friction
                         scrollSpeed *= friction;
 
+                        // Debug log
+                        console.log(`Container ScrollLeft: ${container.scrollLeft}, ScrollSpeed: ${scrollSpeed}`);
+
                         if (scrollSpeed < 0.1) {
                             scrollSpeed = 0;
                             isScrolling = false; // Stop scrolling when speed is minimal
@@ -87,9 +94,6 @@ $(document).ready(function() {
                     const container = document.querySelector('#portfolioContainer');
                     container.addEventListener('mousemove', throttledMouseMove);
                     setInterval(continueScrolling, 20); // Periodically continue scrolling
-
-                    
-                    
                 }
 
                 // Function to fetch and display the next image
