@@ -20,6 +20,52 @@ $(document).ready(function() {
                     return;
                 }
 
+                // Function to initialize scrolling functionality
+                function initializeScrolling() {
+                    const containers = document.querySelectorAll('.gallery .album-portfolio .portfolio-container');
+
+                    containers.forEach(container => {
+                        // Horizontal scrolling with mouse wheel
+                        container.addEventListener('wheel', function(e) {
+                            e.preventDefault();
+                            container.scrollLeft += e.deltaY;
+                        });
+
+                        let isDown = false;
+                        let startX;
+                        let scrollLeft;
+
+                        // Mouse down event
+                        container.addEventListener('mousedown', (e) => {
+                            isDown = true;
+                            startX = e.pageX - container.offsetLeft;
+                            scrollLeft = container.scrollLeft;
+                            container.style.cursor = "grabbing"; // Change cursor to grabbing during drag
+                        });
+
+                        // Mouse leave event
+                        container.addEventListener('mouseleave', () => {
+                            isDown = false;
+                            container.style.cursor = "grab"; // Revert cursor after drag
+                        });
+
+                        // Mouse up event
+                        container.addEventListener('mouseup', () => {
+                            isDown = false;
+                            container.style.cursor = "grab"; // Revert cursor after drag
+                        });
+
+                        // Mouse move event
+                        container.addEventListener('mousemove', (e) => {
+                            if (!isDown) return;
+                            e.preventDefault();
+                            const x = e.pageX - container.offsetLeft;
+                            const walk = (x - startX) * 2; // Adjust scroll speed
+                            container.scrollLeft = scrollLeft - walk;
+                        });
+                    });
+                }
+
                 // While loop to fetch and display images for the current portfolio
                 function fetchNextImage() {
                     $.ajax({
@@ -61,6 +107,9 @@ $(document).ready(function() {
                             // Increment the current ID and continue the loop
                             currentId++;
                             fetchNextImage();  // Recursively call to fetch the next image
+
+                            // Initialize scrolling functionality after the image is appended
+                            initializeScrolling();
                         },                        
                         error: function(xhr, status, error) {
                             if (xhr.status === 0) {
