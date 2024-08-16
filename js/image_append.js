@@ -26,18 +26,17 @@ $(document).ready(function() {
                     const container_scroll = document.querySelector('#portfolioContainer');
 
                     container.addEventListener('mousemove', function(e) {
-                        const rect = container.getBoundingClientRect();
-                        const containerWidth = rect.width;
+                        const rect = container_scroll.getBoundingClientRect();
+                        const reference = container.getBoundingClientRect();
+                        const containerWidth = reference.width;
                         const mouseX = e.clientX - rect.left; // Mouse position within the container
                         const centerX = containerWidth / 2; // Center of the container
-                        const maxScrollLeft = container.scrollWidth - container.clientWidth;
                         const scrollSpeed = 0.2; // Adjust scroll speed as needed
 
                         console.log('Container Rect:', rect);
                         console.log('Container Width:', containerWidth);
                         console.log('Mouse X Position:', mouseX);
                         console.log('Center X Position:', centerX);
-                        console.log('Max Scroll Left:', maxScrollLeft);
                         console.log('Scroll Speed:', scrollSpeed);
 
                         // Calculate scroll amount based on mouse position
@@ -51,7 +50,7 @@ $(document).ready(function() {
                         }
 
                         // Update scroll position
-                        container_scroll.scrollLeft = scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
+                        container_scroll.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
                         console.log('Scroll left:', scrollAmount);
                     });
 
