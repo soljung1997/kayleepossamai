@@ -22,7 +22,7 @@ $(document).ready(function() {
 
                 // Function to initialize hover-based scrolling
                 function initializeHoverScrolling() {
-                    const container = document.querySelector('#navbar');
+                    const container = document.querySelector('#portfolioScreen');
                     const container_scroll = document.querySelector('#portfolioContainer');
 
                     container.addEventListener('mousemove', function(e) {
