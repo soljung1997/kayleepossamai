@@ -31,7 +31,7 @@ $(document).ready(function() {
         let scrollingDirection = 0;
         let isScrolling = false;
         const friction = 0.95; // Friction factor to simulate gradual slowdown
-        const scrollSpeedFactor = 0.5; // Speed factor for scrolling
+        const scrollSpeedFactor = 0.3; // Speed factor for scrolling
 
         // Get the first ID for this portfolio_id
         $.ajax({
