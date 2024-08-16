@@ -33,6 +33,13 @@ $(document).ready(function() {
                         const maxScrollLeft = container.scrollWidth - container.clientWidth;
                         const scrollSpeed = 0.2; // Adjust scroll speed as needed
 
+                        console.log('Container Rect:', rect);
+                        console.log('Container Width:', containerWidth);
+                        console.log('Mouse X Position:', mouseX);
+                        console.log('Center X Position:', centerX);
+                        console.log('Max Scroll Left:', maxScrollLeft);
+                        console.log('Scroll Speed:', scrollSpeed);
+
                         // Calculate scroll amount based on mouse position
                         let scrollAmount = 0;
                         if (mouseX < centerX) {
