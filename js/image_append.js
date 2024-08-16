@@ -53,11 +53,9 @@ $(document).ready(function() {
                     const container = document.querySelector('#portfolioContainer');
                     const rect = container.getBoundingClientRect();
                     const mouseX = e.clientX - rect.left; // Mouse position within the container
-                    const centerX = rect.width / 2; // Center of the container
-                    let deltaX;
+                    const deltaX = mouseX - lastMouseX;
 
                     if (lastMouseX !== 0) {
-                        deltaX = mouseX - lastMouseX;
                         scrollSpeed = Math.abs(deltaX) * scrollSpeedFactor;
                         scrollingDirection = deltaX > 0 ? 1 : -1;
                         isScrolling = true;
@@ -70,6 +68,13 @@ $(document).ready(function() {
                     lastMouseX = mouseX;
                 }
 
+                // Function to handle mouse leaving the container
+                function handleMouseLeave() {
+                    isScrolling = false; // Stop scrolling
+                    scrollSpeed = 0; // Reset scroll speed
+                }
+
+                // Throttled mouse move
                 const throttledMouseMove = throttle(handleMouseMove, 50); // Throttle to run every 50ms
 
                 function continueScrolling() {
@@ -93,6 +98,7 @@ $(document).ready(function() {
                 function initializeHoverScrolling() {
                     const container = document.querySelector('#portfolioContainer');
                     container.addEventListener('mousemove', throttledMouseMove);
+                    container.addEventListener('mouseleave', handleMouseLeave); // Handle mouse leave
                     setInterval(continueScrolling, 20); // Periodically continue scrolling
                 }
 
