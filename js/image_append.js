@@ -43,14 +43,19 @@ $(document).ready(function() {
                             const albumIdMatch = imageUrl.match(/album(\d+)\//);
                             if (albumIdMatch) {
                                 const albumId = albumIdMatch[1];
-
+                        
                                 // Check if the album div already exists, if not create it
                                 if ($('#album' + albumId).length === 0) {
                                     $('#galleryContainer').append('<div id="album' + albumId + '" class="album">Album ' + albumId + '</div>');
                                 }
-
-                                // Append the image to the respective album div
-                                $('#album' + albumId).append('<img src="' + imageUrl + '" alt="Image ' + currentId + '">');
+                        
+                                // Check if the portfolio-container div exists, if not create it
+                                if ($('#album' + albumId + ' .portfolio-container').length === 0) {
+                                    $('#album' + albumId).append('<div class="portfolio-container"></div>');
+                                }
+                        
+                                // Append the image to the respective portfolio-container div
+                                $('#album' + albumId + ' .portfolio-container').append('<img src="' + imageUrl + '" alt="Image ' + currentId + '" class="portfolio-image">');
                             }
 
                             // Increment the current ID and continue the loop
