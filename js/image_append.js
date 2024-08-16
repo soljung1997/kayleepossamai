@@ -22,13 +22,13 @@ $(document).ready(function() {
 
                 // Function to initialize hover-based scrolling
                 function initializeHoverScrolling() {
-                    const container = document.querySelector('#portfolioScreen');
-                    const container_scroll = document.querySelector('#portfolioContainer');
+                    const container = document.querySelector('#portfolioContainer');
+                    const reference = document.querySelector('body');
 
                     container.addEventListener('mousemove', function(e) {
-                        const rect = container_scroll.getBoundingClientRect();
-                        const reference = container.getBoundingClientRect();
-                        const containerWidth = reference.width;
+                        const rect = container.getBoundingClientRect();
+                        const reference_rect = reference.getBoundingClientRect();
+                        const containerWidth = reference_rect.width;
                         const mouseX = e.clientX - rect.left; // Mouse position within the container
                         const centerX = containerWidth / 2; // Center of the container
                         const scrollSpeed = 0.2; // Adjust scroll speed as needed
