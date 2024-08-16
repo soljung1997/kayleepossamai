@@ -50,7 +50,7 @@ $(document).ready(function() {
                         }
 
                         // Update scroll position
-                        container_scroll.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
+                        container.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
                         console.log('Scroll left:', scrollAmount);
                     });
 
