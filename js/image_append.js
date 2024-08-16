@@ -45,6 +45,9 @@ $(document).ready(function() {
 
                         // Update scroll position
                         container_scroll.scrollLeft -= scrollAmount; // Scroll left for mouse on left side, right for mouse on right side
+                        console.log('Scroll left:', container_scroll.scrollLeft);
+                        console.log('Max scroll left:', container_scroll.scrollWidth - container_scroll.clientWidth);
+
                     });
 
                     // Optional: Reset scroll position when mouse leaves
