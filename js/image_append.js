@@ -1,3 +1,25 @@
+function throttle(func, limit) {
+    let lastFunc;
+    let lastRan;
+    return function() {
+        const context = this;
+        const args = arguments;
+        if (!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(function() {
+                if ((Date.now() - lastRan) >= limit) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
+    };
+}
+
+
 $(document).ready(function() {
     const portfolioId = $('body').data('portfolio-id'); // Get the portfolio ID from the HTML data attribute
 
@@ -20,41 +42,44 @@ $(document).ready(function() {
                     return;
                 }
 
-                // Function to initialize hover-based scrolling
+                // Throttled function to handle mouse move
+                function handleMouseMove(e) {
+                    const container = document.querySelector('#portfolioContainer');
+                    const rect = container.getBoundingClientRect();
+                    const reference = document.querySelector('body');
+                    const reference_rect = reference.getBoundingClientRect();
+                    const containerWidth = reference_rect.width;
+                    const mouseX = e.clientX - rect.left; // Mouse position within the container
+                    const centerX = containerWidth / 2; // Center of the container
+                    const scrollSpeed = 1; // Adjust scroll speed as needed
+
+                    console.log('Container Rect:', rect);
+                    console.log('Container Width:', containerWidth);
+                    console.log('Mouse X Position:', mouseX);
+                    console.log('Center X Position:', centerX);
+                    console.log('Scroll Speed:', scrollSpeed);
+
+                    // Calculate scroll amount based on mouse position
+                    let scrollAmount = 0;
+                    if (mouseX < centerX) {
+                        // Mouse is to the left of the center
+                        scrollAmount = (centerX - mouseX) / centerX * scrollSpeed;
+                        console.log('Scroll left:', scrollAmount);
+                        container.scrollLeft -= scrollAmount; // Use calculated scrollAmount
+                    } else {
+                        // Mouse is to the right of the center
+                        scrollAmount = (mouseX - centerX) / centerX * scrollSpeed;
+                        console.log('Scroll left:', scrollAmount);
+                        container.scrollLeft += scrollAmount; // Use calculated scrollAmount
+                    }
+                }
+
+                const throttledMouseMove = throttle(handleMouseMove, 50); // Throttle to run every 50ms
+
                 function initializeHoverScrolling() {
                     const container = document.querySelector('#portfolioContainer');
-                    const reference = document.querySelector('body');
 
-                    container.addEventListener('mousemove', function(e) {
-                        const rect = container.getBoundingClientRect();
-                        const reference_rect = reference.getBoundingClientRect();
-                        const containerWidth = reference_rect.width;
-                        const mouseX = e.clientX - rect.left; // Mouse position within the container
-                        const centerX = containerWidth / 2; // Center of the container
-                        const scrollSpeed = 0.05; // Adjust scroll speed as needed
-
-                        console.log('Container Rect:', rect);
-                        console.log('Container Width:', containerWidth);
-                        console.log('Mouse X Position:', mouseX);
-                        console.log('Center X Position:', centerX);
-                        console.log('Scroll Speed:', scrollSpeed);
-
-                        // Calculate scroll amount based on mouse position
-                        let scrollAmount = 0;
-                        if (mouseX < centerX) {
-                            // Mouse is to the left of the center
-                            scrollAmount = (centerX - mouseX) / centerX * scrollSpeed;
-                            console.log('Scroll left:', scrollAmount);
-                            container.scrollLeft -= 5; // Scroll left for mouse on left side, right for mouse on right side
-                        } else {
-                            // Mouse is to the right of the center
-                            scrollAmount = (mouseX - centerX) / centerX * scrollSpeed;
-                            console.log('Scroll left:', scrollAmount);
-                            container.scrollLeft += 5; // Scroll left for mouse on left side, right for mouse on right side
-                        }
-
-                        // Update scroll position
-                    });
+                    container.addEventListener('mousemove', throttledMouseMove);
 
                     // Optional: Reset scroll position when mouse leaves
                     container.addEventListener('mouseleave', function() {
