@@ -635,7 +635,7 @@
 
     .album-portfolio{
       width: 100%;
-      height: 30%;
+      height: 30vh;
     }
 
     .portfolio-container{
@@ -653,11 +653,14 @@
       display: none; /* Hides scrollbar in WebKit browsers (Chrome, Safari) */
     }
 
-    .portfolio-image{
+    .portfolio-image {
       display: inline-block;
-      width: auto;
+      max-height: 100%;  /* Ensures the image height is constrained by the container's height */
+      max-width: 100%;  /* Ensures the image width is constrained by the container's width */
       height: auto;
+      width: auto;
       margin-right: 1%;
+      object-fit: contain; /* Ensures the image fits within its container while preserving aspect ratio */
     }
 
 
