@@ -51,7 +51,7 @@ $(document).ready(function() {
                     const containerWidth = reference_rect.width;
                     const mouseX = e.clientX - rect.left; // Mouse position within the container
                     const centerX = containerWidth / 2; // Center of the container
-                    const scrollSpeed = 1; // Adjust scroll speed as needed
+                    const scrollSpeed = 3; // Adjust scroll speed as needed
 
                     console.log('Container Rect:', rect);
                     console.log('Container Width:', containerWidth);
